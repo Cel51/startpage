@@ -1,0 +1,47 @@
+#loading {
+  position: absolute;
+  width: 300px; height: 200px;
+  top: 50%; left: 50%; margin-top: -100px; margin-left: -150px;
+
+  .text {
+    color: @color-1;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    letter-spacing: .3em;
+    .setFont-family(Roboto Light);
+  }
+
+  &::before, &::after {
+    content: "";
+    display: block;
+    width: 300px;
+    height: 1px;
+    background-color: @color-3;
+  }
+
+  .squares {
+    margin: 5px 0 15px;
+    height: 70px;
+    position: relative;
+  }
+  .square {
+    position: absolute;
+    top: 50%; left: 50%; margin-top: -30px; margin-left: -30px;
+    width: 60px; height: 60px;
+
+    &.s1 {
+      background-color: @color-4;
+    }
+    &.s2 {
+      background-color: @color-3;
+    }
+    &.s3 {
+      background-color: @color-2;
+    }
+    &.s4 {
+      background-color: @color-1;
+    }
+  }
+}
