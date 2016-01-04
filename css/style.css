@@ -60,7 +60,7 @@ body {
   display: block;
   width: 300px;
   height: 1px;
-  background-color: rgba(52, 73, 94, 0.9);
+  background-color: rgba(44, 62, 80, 0.9);
 }
 #loading .squares {
   margin: 5px 0 15px;
@@ -77,10 +77,10 @@ body {
   height: 60px;
 }
 #loading .square.s1 {
-  background-color: rgba(44, 62, 80, 0.9);
+  background-color: rgba(34, 35, 50, 0.9);
 }
 #loading .square.s2 {
-  background-color: rgba(52, 73, 94, 0.9);
+  background-color: rgba(44, 62, 80, 0.9);
 }
 #loading .square.s3 {
   background-color: rgba(127, 140, 141, 0.9);
@@ -88,3 +88,4 @@ body {
 #loading .square.s4 {
   background-color: rgba(236, 240, 241, 0.9);
 }
+/* ----------------------------------------------------- FONTFACE ------------------------------------------------------*/
