@@ -5,19 +5,75 @@
 		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
 		<script src="script/jquery.backstretch.js"></script>
-		<script src="script/template.js"></script>
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,100|Orbitron' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="css/style.css">
+		<meta charset="utf-8"/>
 	</head>
 	<body>
-		<div id="loading">
-			<div class="text">Pyramid Networks</div>
-			<div class="squares">
-				<div class="square s1"></div>
-				<div class="square s2"></div>
-				<div class="square s3"></div>
-				<div class="square s4"></div>
+		<section id="large-header">
+			<canvas id="header"></canvas>
+		</section>
+
+		<section class="left-pannel">
+			<div id="main-board">
+				<div class="text">
+					Pyramid Networks
+				</div>
+				<div class="squares">
+					<div class="square s1"></div>
+					<div class="square s2"></div>
+					<div class="square s3"></div>
+					<div class="square s4"></div>
+				</div>
 			</div>
-		</div>
+			<div id="greetings-board">
+				<p class="greetings-helloworld">
+					<span class="greetings-title"></span><br>
+					<span class="greetings-name">administrator</span>
+				</p>
+				<p class="greetings-time">
+					<span class="time-title">Time</span><br>
+					<span class="time-hours"></span> :
+					<span class="time-minutes"></span> :
+					<span class="time-seconds"></span><br>
+				</p>
+				<p class="greetings-date">
+					<span class="date-title">Date</span><br>
+					<span class="date-day"></span> .
+					<span class="date-month"></span> .
+					<span class="date-year"></span>
+				</p>
+			</div>
+			<div id="network-board">
+				<div class="connect-status">
+					<span class="status-text">ONLINE</span>
+					<span class="status-number">11/11</span>
+				</div>
+				<div class="network-health">
+					<span class="network-title">
+						Network Health
+					</span>
+					<div class="network-status">
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="right-pannel">
+			<div>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus omnis, eaque mollitia esse numquam alias! Rem cumque, aspernatur natus, voluptate nihil est nam deserunt officiis quaerat non illum quos eaque.
+			</div>
+			<div>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus omnis, eaque mollitia esse numquam alias! Rem cumque, aspernatur natus, voluptate nihil est nam deserunt officiis quaerat non illum quos eaque.
+			</div>
+			<div>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus omnis, eaque mollitia esse numquam alias! Rem cumque, aspernatur natus, voluptate nihil est nam deserunt officiis quaerat non illum quos eaque.
+			</div>
+		</section>
+
+
+
 	</body>
+	<script src="script/template.js"></script>
+	<script src="script/background.js"></script>
 </html>

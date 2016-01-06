@@ -1,0 +1,49 @@
+#main-board {
+  height: auto;
+	margin-top: 20px;
+  //.column(6);
+  // position: absolute;
+  // top: 50%; left: 50%; margin-top: -100px; margin-left: -150px;
+
+  .text {
+    color: @color-1;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    letter-spacing: .3em;
+    .setFont-family(Roboto Light);
+  }
+
+  &::before, &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: @color-4;
+  }
+
+  .squares {
+    margin: 5px 0 15px;
+    height: 70px;
+    position: relative;
+  }
+  .square {
+    position: absolute;
+    top: 50%; left: 50%; margin-top: -20px; margin-left: -20px;
+    width: 40px; height: 40px;
+
+    &.s1 {
+      background-color: @color-4;
+    }
+    &.s2 {
+      background-color: @color-3;
+    }
+    &.s3 {
+      background-color: @color-2;
+    }
+    &.s4 {
+      background-color: @color-1;
+    }
+  }
+}

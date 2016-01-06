@@ -1,0 +1,47 @@
+#greetings-board {
+  height: auto;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: @color-3;
+  }
+  p {
+    padding: 10px;
+    text-transform: uppercase;
+    letter-spacing: .3em;
+    .setFont-family(Roboto Light);
+    &.greetings-helloworld {
+      color: @color-2;
+      font-size: 1.2em;
+      .greetings-title {
+        color: @color-1;
+      }
+      .greetings-name {
+        color: @color-2;
+      }
+    }
+    &.greetings-time {
+      color: @color-2;
+      font-size: 1em;
+      .time-title {
+        color: @color-1;
+      }
+      .time-hours, .time-minutes, .time-seconds {
+        color: @color-2;
+      }
+    }
+    &.greetings-date {
+      color: @color-2;
+      font-size: 1em;
+      .date-title {
+        color: @color-1;
+      }
+      .date-day, .date-month, .date-year {
+        color: @color-2;
+      }
+    }
+  }
+}

@@ -24,6 +24,18 @@
 //
 //
 */
+body {
+  width: 100%;
+  *zoom: 1;
+}
+body:before,
+body:after {
+  content: "";
+  display: table;
+}
+body:after {
+  clear: both;
+}
 /* ----------------------------------------------------- GLOBAL    ------------------------------------------------------*/
 body {
   background-image: url(../images/background.png);
@@ -36,56 +48,121 @@ body {
 /* ----------------------------------------------------- HEADER   ------------------------------------------------------*/
 /* ----------------------------------------------------- CONTENT  ------------------------------------------------------*/
 /* ----------------------------------------------------- FOOTER   ------------------------------------------------------*/
-#loading {
+/* ----------------------------------------------------- MODULES  ------------------------------------------------------*/
+#large-header {
   position: absolute;
-  width: 300px;
-  height: 200px;
-  top: 50%;
-  left: 50%;
-  margin-top: -100px;
-  margin-left: -150px;
+  width: 100%;
+  height: 100%;
+  z-index: -999;
 }
-#loading .text {
+#main-board {
+  height: auto;
+  margin-top: 20px;
+}
+#main-board .text {
   color: rgba(236, 240, 241, 0.9);
   padding: 10px;
   text-align: center;
   text-transform: uppercase;
-  font-size: 1.3em;
+  font-size: 1.5em;
   letter-spacing: .3em;
   font-family: Roboto Light, Verdana, Tahoma, Arial, Helvetica, sans-serif !important;
 }
-#loading::before,
-#loading::after {
+#main-board::before,
+#main-board::after {
   content: "";
   display: block;
-  width: 300px;
+  width: 100%;
   height: 1px;
   background-color: rgba(44, 62, 80, 0.9);
 }
-#loading .squares {
+#main-board .squares {
   margin: 5px 0 15px;
   height: 70px;
   position: relative;
 }
-#loading .square {
+#main-board .square {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -30px;
-  margin-left: -30px;
-  width: 60px;
-  height: 60px;
+  margin-top: -20px;
+  margin-left: -20px;
+  width: 40px;
+  height: 40px;
 }
-#loading .square.s1 {
-  background-color: rgba(34, 35, 50, 0.9);
-}
-#loading .square.s2 {
+#main-board .square.s1 {
   background-color: rgba(44, 62, 80, 0.9);
 }
-#loading .square.s3 {
+#main-board .square.s2 {
+  background-color: rgba(52, 73, 94, 0.9);
+}
+#main-board .square.s3 {
   background-color: rgba(127, 140, 141, 0.9);
 }
-#loading .square.s4 {
+#main-board .square.s4 {
   background-color: rgba(236, 240, 241, 0.9);
 }
-/* ----------------------------------------------------- FONTFACE ------------------------------------------------------*/
+#greetings-board {
+  height: auto;
+}
+#greetings-board::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(52, 73, 94, 0.9);
+}
+#greetings-board p {
+  padding: 10px;
+  text-transform: uppercase;
+  letter-spacing: .3em;
+  font-family: Roboto Light, Verdana, Tahoma, Arial, Helvetica, sans-serif !important;
+}
+#greetings-board p.greetings-helloworld {
+  color: rgba(127, 140, 141, 0.9);
+  font-size: 1.2em;
+}
+#greetings-board p.greetings-helloworld .greetings-title {
+  color: rgba(236, 240, 241, 0.9);
+}
+#greetings-board p.greetings-helloworld .greetings-name {
+  color: rgba(127, 140, 141, 0.9);
+}
+#greetings-board p.greetings-time {
+  color: rgba(127, 140, 141, 0.9);
+  font-size: 1em;
+}
+#greetings-board p.greetings-time .time-title {
+  color: rgba(236, 240, 241, 0.9);
+}
+#greetings-board p.greetings-time .time-hours,
+#greetings-board p.greetings-time .time-minutes,
+#greetings-board p.greetings-time .time-seconds {
+  color: rgba(127, 140, 141, 0.9);
+}
+#greetings-board p.greetings-date {
+  color: rgba(127, 140, 141, 0.9);
+  font-size: 1em;
+}
+#greetings-board p.greetings-date .date-title {
+  color: rgba(236, 240, 241, 0.9);
+}
+#greetings-board p.greetings-date .date-day,
+#greetings-board p.greetings-date .date-month,
+#greetings-board p.greetings-date .date-year {
+  color: rgba(127, 140, 141, 0.9);
+}
+section.left-pannel {
+  display: inline;
+  float: left;
+  width: 23.95833333%;
+  margin: 0 0.52083333%;
+  height: auto;
+}
+section.right-pannel {
+  display: inline;
+  float: left;
+  width: 73.95833333%;
+  margin: 0 0.52083333%;
+  height: auto;
+}
