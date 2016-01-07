@@ -1,12 +1,29 @@
 var load;
 var tlLoading;
 var tlHideLoading;
+var website = ["google.ch","facebook.com","twitter.com","stackoverflow.com", "4chan.org"]
 
 $(document).ready(function (){
   initElements();
   initTimeLines();
   tlLoading.play();
   runClock();
+
+  website.forEach(function(entry){
+    ping(entry,function (status) {
+      console.log(status);
+    });
+  });
+
+  //
+  // for (var i = 0; i < website.length; i++) {
+  //   console.log(website);
+  //   ping(website[i],function (status) {
+  //     console.log(status);
+  //   });
+  // }
+
+
 
   setTimeout(function() {
     tlLoading.pause();
@@ -28,11 +45,12 @@ function initTimeLines() {
 
   tlHideLoading = new TimelineMax()
   .to($(".squares"),.2,{autoAlpha: 0})
-  .to($(".squares"),.2,{height: 0, margin: 0})
+  .to($(".squares"),.45,{height: 0},"#1")
+  .from($(".image"),.5,{height: 0},"#1")
+  .from($(".image"),.3,{autoAlpha: 0, marginLeft: "-20"})
   .from($("#greetings-board"),.4,{autoAlpha: 0, marginTop: "-20"},"#2")
   .staggerFrom($("#greetings-board p"),.1,{autoAlpha: 0, marginLeft: "-20"},0.1)
   .from($("#network-board"),.4,{autoAlpha: 0, marginTop: "-20"})
-
   .pause();
 }
 function runClock() {
@@ -74,4 +92,21 @@ function runClock() {
 function checkTime(i) {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
+}
+
+function ping(ip, callback) {
+
+    this.callback = callback
+    this.ip = ip;
+
+    var _that = this;
+
+    this.img = new Image();
+
+    this.img.onload = function() {};
+    this.img.onerror = function() {};
+
+    this.start = new Date().getTime();
+    this.img.src = "http://" + ip;
+    this.timer = setTimeout(function() {}, 1500);
 }

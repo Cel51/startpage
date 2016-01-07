@@ -68,6 +68,9 @@ body {
   letter-spacing: .3em;
   font-family: Roboto Light, Verdana, Tahoma, Arial, Helvetica, sans-serif !important;
 }
+#main-board .image {
+  text-align: center;
+}
 #main-board::before,
 #main-board::after {
   content: "";
@@ -166,3 +169,4 @@ section.right-pannel {
   margin: 0 0.52083333%;
   height: auto;
 }
+/* ----------------------------------------------------- FONTFACE ------------------------------------------------------*/
