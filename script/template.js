@@ -1,7 +1,7 @@
 var load;
 var tlLoading;
 var tlHideLoading;
-var website = ["google.ch","facebook.com","twitter.com","stackoverflow.com", "4chan.org"]
+var website = ["google.ch","facebook.com","twitter.com","stackoverflow.com", "4chan.org","192.168.0.1"]
 
 $(document).ready(function (){
   initElements();
@@ -103,10 +103,10 @@ function ping(ip, callback) {
 
     this.img = new Image();
 
-    this.img.onload = function() {};
-    this.img.onerror = function() {};
+    this.img.onload = function() { console.log("responded")};
+    this.img.onerror = function() {console.log("nop")};
 
     this.start = new Date().getTime();
     this.img.src = "http://" + ip;
-    this.timer = setTimeout(function() {}, 1500);
+    //this.timer = setTimeout(function() {console.log("nop")}, 1500);
 }
