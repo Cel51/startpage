@@ -36,6 +36,14 @@ body:after {
 body:after {
   clear: both;
 }
+/* ----------------------------------------------------- FONTFACE ------------------------------------------------------*/
+@font-face {
+  font-family: 'weather';
+  src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot');
+  src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot?#iefix') format('embedded-opentype'), url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.woff') format('woff'), url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.ttf') format('truetype'), url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.svg#artill_clean_weather_iconsRg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 /* ----------------------------------------------------- GLOBAL    ------------------------------------------------------*/
 body {
   background-image: url(../images/background.png);
@@ -155,6 +163,187 @@ body {
 #greetings-board p.greetings-date .date-year {
   color: rgba(127, 140, 141, 0.9);
 }
+#weather-board {
+  color: #fff;
+  height: auto;
+}
+#weather-board::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(52, 73, 94, 0.9);
+}
+#weather-board p {
+  padding: 10px;
+  text-transform: uppercase;
+  letter-spacing: .3em;
+}
+#weather-board p .weather-location {
+  font-size: 1.2em;
+}
+#weather-board p .weather-temperature {
+  font-size: 1.2em;
+  color: rgba(127, 140, 141, 0.9);
+}
+#weather-board p .weather-icon {
+  color: rgba(127, 140, 141, 0.9);
+}
+#weather-board p .weather-description {
+  font-size: 0.9em;
+  color: rgba(127, 140, 141, 0.9);
+}
+#weather-board i {
+  font-family: "Weather", Verdana, Tahoma, Arial, Helvetica, sans-serif !important;
+  font-size: 60px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1.0;
+}
+#weather-board i.icon-0:before {
+  content: ":";
+}
+#weather-board i.icon-1:before {
+  content: "p";
+}
+#weather-board i.icon-2:before {
+  content: "S";
+}
+#weather-board i.icon-3:before {
+  content: "Q";
+}
+#weather-board i.icon-4:before {
+  content: "S";
+}
+#weather-board i.icon-5:before {
+  content: "W";
+}
+#weather-board i.icon-6:before {
+  content: "W";
+}
+#weather-board i.icon-7:before {
+  content: "W";
+}
+#weather-board i.icon-8:before {
+  content: "W";
+}
+#weather-board i.icon-9:before {
+  content: "I";
+}
+#weather-board i.icon-10:before {
+  content: "W";
+}
+#weather-board i.icon-11:before {
+  content: "I";
+}
+#weather-board i.icon-12:before {
+  content: "I";
+}
+#weather-board i.icon-13:before {
+  content: "I";
+}
+#weather-board i.icon-14:before {
+  content: "I";
+}
+#weather-board i.icon-15:before {
+  content: "W";
+}
+#weather-board i.icon-16:before {
+  content: "I";
+}
+#weather-board i.icon-17:before {
+  content: "W";
+}
+#weather-board i.icon-18:before {
+  content: "U";
+}
+#weather-board i.icon-19:before {
+  content: "Z";
+}
+#weather-board i.icon-20:before {
+  content: "Z";
+}
+#weather-board i.icon-21:before {
+  content: "Z";
+}
+#weather-board i.icon-22:before {
+  content: "Z";
+}
+#weather-board i.icon-23:before {
+  content: "Z";
+}
+#weather-board i.icon-24:before {
+  content: "E";
+}
+#weather-board i.icon-25:before {
+  content: "E";
+}
+#weather-board i.icon-26:before {
+  content: "3";
+}
+#weather-board i.icon-27:before {
+  content: "a";
+}
+#weather-board i.icon-28:before {
+  content: "A";
+}
+#weather-board i.icon-29:before {
+  content: "a";
+}
+#weather-board i.icon-30:before {
+  content: "A";
+}
+#weather-board i.icon-31:before {
+  content: "6";
+}
+#weather-board i.icon-32:before {
+  content: "1";
+}
+#weather-board i.icon-33:before {
+  content: "6";
+}
+#weather-board i.icon-34:before {
+  content: "1";
+}
+#weather-board i.icon-35:before {
+  content: "W";
+}
+#weather-board i.icon-36:before {
+  content: "1";
+}
+#weather-board i.icon-37:before {
+  content: "S";
+}
+#weather-board i.icon-38:before {
+  content: "S";
+}
+#weather-board i.icon-39:before {
+  content: "S";
+}
+#weather-board i.icon-40:before {
+  content: "M";
+}
+#weather-board i.icon-41:before {
+  content: "W";
+}
+#weather-board i.icon-42:before {
+  content: "I";
+}
+#weather-board i.icon-43:before {
+  content: "W";
+}
+#weather-board i.icon-44:before {
+  content: "a";
+}
+#weather-board i.icon-45:before {
+  content: "S";
+}
+#weather-board i.icon-46:before {
+  content: "U";
+}
+#weather-board i.icon-47:before {
+  content: "S";
+}
 section.left-pannel {
   display: inline;
   float: left;
@@ -169,4 +358,3 @@ section.right-pannel {
   margin: 0 0.52083333%;
   height: auto;
 }
-/* ----------------------------------------------------- FONTFACE ------------------------------------------------------*/
