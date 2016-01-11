@@ -358,3 +358,286 @@ section.right-pannel {
   margin: 0 0.52083333%;
   height: auto;
 }
+.terminal .terminal-output .format,
+.cmd .format,
+.cmd .prompt,
+.cmd .prompt div,
+.terminal .terminal-output div div {
+  display: inline-block;
+}
+.cmd .mask,
+.cmd .clipboard {
+  position: absolute;
+  display: block;
+  bottom: 0;
+  height: 16px;
+  left: -10px;
+}
+.terminal h1,
+.terminal h2,
+.terminal h3,
+.terminal h4,
+.terminal h5,
+.terminal h6,
+.terminal pre,
+.cmd {
+  margin: 0;
+}
+.terminal h1,
+.terminal h2,
+.terminal h3,
+.terminal h4,
+.terminal h5,
+.terminal h6 {
+  line-height: 1.2em;
+}
+.wrap {
+  word-wrap: break-word;
+  overflow: initial;
+}
+.cmd .clipboard {
+  /* this seems to work after all on Android */
+  left: -99999px;
+  clip: rect(1px, 1px, 1px, 1px);
+  /* on desktop textarea appear when paste */
+  /*
+    opacity: 0.01;
+    filter: alpha(opacity = 0.01);
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0.01);
+    */
+  width: 10px;
+  /* textarea need to have width or it will not work on Android */
+  height: 10px;
+  padding: 0;
+  resize: none;
+  border: none;
+  z-index: 0;
+  overflow: hidden;
+  outline: none;
+}
+.terminal .error {
+  color: #e74c3c;
+}
+.terminal {
+  padding: 10px 0;
+  position: relative;
+  overflow: hidden;
+  margin: 10px 0;
+}
+.terminal::after,
+.terminal::before {
+  padding: 10px 0 10px;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(52, 73, 94, 0.9);
+}
+.cmd {
+  padding: 0;
+  height: 1.3em;
+  position: relative
+  /*margin-top: 3px; */
+}
+.terminal .inverted,
+.cmd .inverted,
+.cmd .cursor.blink {
+  background-color: #aaa;
+  color: #000;
+}
+.cmd .cursor.blink {
+  -webkit-animation: terminal-blink 1s infinite steps(1, start);
+  -ms-animation: terminal-blink 1s infinite steps(1, start);
+  animation: terminal-blink 1s infinite steps(1, start);
+}
+@-webkit-keyframes terminal-blink {
+  0%,
+  100% {
+    background-color: #000;
+    color: #aaa;
+  }
+  50% {
+    background-color: #bbb;
+    color: #000;
+  }
+}
+@-ms-keyframes terminal-blink {
+  0%,
+  100% {
+    background-color: #000;
+    color: #aaa;
+  }
+  50% {
+    background-color: #bbb;
+    color: #000;
+  }
+}
+@keyframes terminal-blink {
+  0%,
+  100% {
+    background-color: #000;
+    color: #aaa;
+  }
+  50% {
+    background-color: #bbb;
+    /* not #aaa because it's seems there is Google Chrome bug */
+    color: #000;
+  }
+}
+.terminal .terminal-output div div,
+.cmd .prompt {
+  display: block;
+  line-height: 14px;
+  height: auto;
+}
+.cmd .prompt {
+  float: left;
+}
+.terminal,
+.cmd {
+  font-family: Roboto Light, Verdana, Tahoma, Arial, Helvetica, sans-serif !important;
+  /*font-family: FreeMono, monospace; this don't work on Android */
+  color: rgba(236, 240, 241, 0.9);
+  background-color: transparent;
+  font-size: 12px;
+  line-height: 14px;
+}
+.terminal-output > div {
+  /*padding-top: 3px;*/
+  min-height: 14px;
+}
+.terminal .terminal-output div span {
+  display: inline-block;
+}
+.cmd span {
+  float: left
+  /*display: inline-block; */
+}
+/* fix double style of selecting text in terminal */
+.terminal-output span,
+.terminal-output a,
+.cmd div,
+.cmd span,
+.terminal td,
+.terminal pre,
+.terminal h1,
+.terminal h2,
+.terminal h3,
+.terminal h4,
+.terminal h5,
+.terminal h6 {
+  -webkit-touch-callout: initial;
+  -webkit-user-select: initial;
+  -khtml-user-select: initial;
+  -moz-user-select: initial;
+  -ms-user-select: initial;
+  user-select: initial;
+}
+.terminal,
+.terminal-output,
+.terminal-output div {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* firefox hack */
+@-moz-document url-prefix() {
+  .terminal,
+  .terminal-output,
+  .terminal-output div {
+    -webkit-touch-callout: initial;
+    -webkit-user-select: initial;
+    -khtml-user-select: initial;
+    -moz-user-select: initial;
+    -ms-user-select: initial;
+    user-select: initial;
+  }
+}
+.terminal table {
+  border-collapse: collapse;
+}
+.terminal td {
+  border: 1px solid #aaa;
+}
+.terminal h1::-moz-selection,
+.terminal h2::-moz-selection,
+.terminal h3::-moz-selection,
+.terminal h4::-moz-selection,
+.terminal h5::-moz-selection,
+.terminal h6::-moz-selection,
+.terminal pre::-moz-selection,
+.terminal td::-moz-selection,
+.terminal .terminal-output div div::-moz-selection,
+.terminal .terminal-output div span::-moz-selection,
+.terminal .terminal-output div div a::-moz-selection,
+.cmd div::-moz-selection,
+.cmd > span::-moz-selection,
+.cmd .prompt span::-moz-selection {
+  background-color: #aaa;
+  color: #000;
+}
+/* this don't work in Chrome
+.terminal tr td::-moz-selection {
+    border-color: #000;
+}
+.terminal tr td::selection {
+    border-color: #000;
+}
+*/
+.terminal h1::-moz-selection,
+.terminal h2::-moz-selection,
+.terminal h3::-moz-selection,
+.terminal h4::-moz-selection,
+.terminal h5::-moz-selection,
+.terminal h6::-moz-selection,
+.terminal pre::-moz-selection,
+.terminal td::-moz-selection,
+.terminal .terminal-output div div::-moz-selection,
+.terminal .terminal-output div div a::-moz-selection,
+.terminal .terminal-output div span::-moz-selection,
+.cmd div::-moz-selection,
+.cmd > span::-moz-selection,
+.cmd .prompt span::-moz-selection {
+  background-color: #aaa;
+  color: #000;
+}
+.terminal h1::selection,
+.terminal h2::selection,
+.terminal h3::selection,
+.terminal h4::selection,
+.terminal h5::selection,
+.terminal h6::selection,
+.terminal pre::selection,
+.terminal td::selection,
+.terminal .terminal-output div div::selection,
+.terminal .terminal-output div div a::selection,
+.terminal .terminal-output div span::selection,
+.cmd div::selection,
+.cmd > span::selection,
+.cmd .prompt span::selection {
+  background-color: #aaa;
+  color: #000;
+}
+.terminal .terminal-output div.error,
+.terminal .terminal-output div.error div {
+  color: red;
+}
+.tilda {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1100;
+}
+.clear {
+  clear: both;
+}
+.terminal a {
+  color: #0F60FF;
+}
+.terminal a:hover {
+  color: red;
+}
