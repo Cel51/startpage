@@ -43,15 +43,15 @@
     color: #e74c3c;
 }
 #terminal-board {
-  height: 300px;
+
   margin: 20px 0;
-  padding: 10px;
   border-top: @color-3 1px solid;
   border-bottom: @color-3 1px solid;
 }
 .terminal {
   position: relative;
   overflow: hidden;
+  margin: 10px 10px;
   //height: 300px;
   //overflow: auto;
 }
@@ -62,8 +62,8 @@
     /*margin-top: 3px; */
 }
 .terminal .inverted, .cmd .inverted, .cmd .cursor.blink {
-    background-color: #aaa;
-    color: #000;
+    background-color: transparent;
+    color: transparent;
 }
 .cmd .cursor.blink {
     -webkit-animation: terminal-blink 1s infinite steps(1, start);
@@ -73,44 +73,44 @@
 }
 @-webkit-keyframes terminal-blink {
   0%, 100% {
-      background-color: #000;
+      background-color: transparent;
       color: #aaa;
   }
   50% {
-      background-color: #bbb;
-      color: #000;
+      background-color: #bbb; /* not #aaa because it's seems there is Google Chrome bug */
+      color: transparent;
   }
 }
 
 @-ms-keyframes terminal-blink {
   0%, 100% {
-      background-color: #000;
+      background-color: transparent;
       color: #aaa;
   }
   50% {
-      background-color: #bbb;
-      color: #000;
+      background-color: #bbb; /* not #aaa because it's seems there is Google Chrome bug */
+      color: transparent;
   }
 }
 
 @-moz-keyframes terminal-blink {
   0%, 100% {
-      background-color: #000;
-      color: #aaa;
-  }
-  50% {
-      background-color: #bbb;
-      color: #000;
-  }
-}
-@keyframes terminal-blink {
-  0%, 100% {
-      background-color: #000;
+      background-color: transparent;
       color: #aaa;
   }
   50% {
       background-color: #bbb; /* not #aaa because it's seems there is Google Chrome bug */
-      color: #000;
+      color: transparent;
+  }
+}
+@keyframes terminal-blink {
+  0%, 100% {
+      background-color: transparent;
+      color: #aaa;
+  }
+  50% {
+      background-color: #bbb; /* not #aaa because it's seems there is Google Chrome bug */
+      color: transparent;
   }
 }
 .terminal .terminal-output div div, .cmd .prompt {
@@ -126,8 +126,8 @@
     /*font-family: FreeMono, monospace; this don't work on Android */
     color: @color-1;
     background-color: transparent;
-    font-size: 12px;
-    line-height: 14px;
+    font-size: 14px;
+    line-height: 16px;
 }
 .terminal-output > div {
     /*padding-top: 3px;*/

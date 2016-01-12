@@ -1,13 +1,24 @@
 var tlLoading, tlDisplay;
 var username = "Cel51"
 var wLocation = ["784302","784201","783382"];
+var heightFirst = 200;
 
 $(document).ready(function (){
   init();
+  setTimeout(function() {
+    sizeUpdate();
+  },2500)
 });
-$(window).resize(function() {
 
-});
+$(window).resize(function (){
+  sizeUpdate();
+  resizeBg();
+})
+
+function sizeUpdate() {
+  $("#terminal-board").css({height: $("#main-board").height()-2})
+  $("#terminal").css({height: $("#main-board").height()-20})
+}
 
 function init() {
     initGreetings();
@@ -23,24 +34,25 @@ function init() {
     },1390);
 }
 function initTerminal() {
-  $('#terminal').terminal(function(command, term) {
-      if (command !== '') {
-          try {
-              var result = window.eval(command);
-              if (result !== undefined) {
-                  term.echo(new String(result));
-              }
-          } catch(e) {
-              term.error(new String(e));
-          }
-      } else {
-         term.echo('');
-      }
-  }, {
-      greetings: 'Hello ' + username,
-      name: 'js_demo',
-      height: 0,
-      prompt: 'js> '});
+  $('#terminal').terminal({
+    "!g": function(arg1) {
+        $.getJSON('http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q='+arg1+'&rsz=large&callback=?', function(data) {
+          console.log(data);
+        });
+    },
+    "!d": function(arg1) {
+        $.getJSON('http://api.duckduckgo.com/?q='+arg1+'&format=json&pretty=1&callback=?', function(data) {
+          console.log(data);
+        });
+    },
+  },
+    {
+        greetings: 'Hello ' + username,
+        name: 'shell',
+        height: 0,
+        prompt: username+'@homepage:~$ '
+    }
+  );
 }
 function initGreetings() {
   $(".greetings-helloworld .greetings-name").html(username);
@@ -88,7 +100,7 @@ function initTimeLines() {
   .from($(".image"),.5,{height: 0},"#1")
   .from($(".image"),.2,{autoAlpha: 0, marginTop: "-20"})
   .from($("#greetings-board"),.2,{autoAlpha: 0, marginTop: "-20"})
-  .from($("#weather-board"),.2,{autoAlpha: 0, marginTop: 0, marginTop: "-20"})
+  .from($("#weather-board"),.2,{autoAlpha: 0, marginTop: "-20"})
   .from($("#terminal-board"),.2,{autoAlpha: 0, marginTop: "-20"})
   .timeScale(1.2)
   .pause();

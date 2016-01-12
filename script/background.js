@@ -71,7 +71,7 @@
             window.addEventListener('mousemove', mouseMove);
         }
         window.addEventListener('scroll', scrollCheck);
-        window.addEventListener('resize', resize);
+        window.addEventListener('resize', resizeBg);
     }
 
     function mouseMove(e) {
@@ -93,7 +93,7 @@
         else animateHeader = true;
     }
 
-    function resize() {
+    function resizeBg() {
         width = window.innerWidth;
         height = window.innerHeight;
         largeHeader.style.height = height+'px';
