@@ -5,17 +5,42 @@ var wLocation = ["784302","784201","783382"];
 $(document).ready(function (){
   init();
 });
+$(window).resize(function() {
+
+});
 
 function init() {
     initGreetings();
     initWeather();
     initTimeLines();
 
+    initTerminal();
+
     tlLoading.play();
     setTimeout(function() {
       tlLoading.pause();
       tlDisplay.play();
     },1390);
+}
+function initTerminal() {
+  $('#terminal').terminal(function(command, term) {
+      if (command !== '') {
+          try {
+              var result = window.eval(command);
+              if (result !== undefined) {
+                  term.echo(new String(result));
+              }
+          } catch(e) {
+              term.error(new String(e));
+          }
+      } else {
+         term.echo('');
+      }
+  }, {
+      greetings: 'Hello ' + username,
+      name: 'js_demo',
+      height: 0,
+      prompt: 'js> '});
 }
 function initGreetings() {
   $(".greetings-helloworld .greetings-name").html(username);
@@ -61,9 +86,11 @@ function initTimeLines() {
   .to($(".squares"),.2,{autoAlpha: 0})
   .to($(".squares"),.45,{height: 0},"#1")
   .from($(".image"),.5,{height: 0},"#1")
-  .from($(".image"),.3,{autoAlpha: 0, marginTop: "-20"})
-  .from($("#greetings-board"),.4,{autoAlpha: 0, marginTop: "-20"})
-  .from($("#weather-board"),.4,{autoAlpha: 0, marginTop: 0, marginTop: "-20"})
+  .from($(".image"),.2,{autoAlpha: 0, marginTop: "-20"})
+  .from($("#greetings-board"),.2,{autoAlpha: 0, marginTop: "-20"})
+  .from($("#weather-board"),.2,{autoAlpha: 0, marginTop: 0, marginTop: "-20"})
+  .from($("#terminal-board"),.2,{autoAlpha: 0, marginTop: "-20"})
+  .timeScale(1.2)
   .pause();
 }
 function initClock() {

@@ -46,6 +46,7 @@ body:after {
 }
 /* ----------------------------------------------------- GLOBAL    ------------------------------------------------------*/
 body {
+  background-attachment: fixed;
   background-image: url(../images/background.png);
 }
 * {
@@ -418,20 +419,16 @@ section.right-pannel {
 .terminal .error {
   color: #e74c3c;
 }
+#terminal-board {
+  height: 300px;
+  margin: 20px 0;
+  padding: 10px;
+  border-top: rgba(52, 73, 94, 0.9) 1px solid;
+  border-bottom: rgba(52, 73, 94, 0.9) 1px solid;
+}
 .terminal {
-  padding: 10px 0;
   position: relative;
   overflow: hidden;
-  margin: 10px 0;
-}
-.terminal::after,
-.terminal::before {
-  padding: 10px 0 10px;
-  content: "";
-  display: block;
-  width: 100%;
-  height: 1px;
-  background-color: rgba(52, 73, 94, 0.9);
 }
 .cmd {
   padding: 0;

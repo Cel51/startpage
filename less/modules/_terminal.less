@@ -42,21 +42,18 @@
 .terminal .error {
     color: #e74c3c;
 }
+#terminal-board {
+  height: 300px;
+  margin: 20px 0;
+  padding: 10px;
+  border-top: @color-3 1px solid;
+  border-bottom: @color-3 1px solid;
+}
 .terminal {
-    padding: 10px 0;
-    position: relative;
-    overflow: hidden;
-    //overflow: auto;
-    margin: 10px 0;
-
-    &::after, &::before {
-      padding: 10px 0 10px;
-      content: "";
-      display: block;
-      width: 100%;
-      height: 1px;
-      background-color: @color-3;
-    }
+  position: relative;
+  overflow: hidden;
+  //height: 300px;
+  //overflow: auto;
 }
 .cmd {
     padding: 0;
@@ -116,7 +113,6 @@
       color: #000;
   }
 }
-
 .terminal .terminal-output div div, .cmd .prompt {
     display: block;
     line-height: 14px;
