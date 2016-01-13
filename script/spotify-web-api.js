@@ -3,7 +3,7 @@
 var SpotifyWebApi = (function() {
 
   var _baseUri = 'https://api.spotify.com/v1';
-  var _accessToken = "BQDIQbLPdfs5DKdPLAMSWHg2qmucJCYPfy6s1JaNcNoWdgR_D4WhQsVrbnefOyy2X0giK3iuhO1Hs1l7nDsozT1zyHXyB2yZk4_zDlxldyrtiJr25fNiAN05bb52jcBpPlkn8DVHtTMVgI1CJavRMzGQSXcGT62RpvP15TnThgYEGM2d5L_PzLFZYqjzrwhJ95Yq0cN0KvxCedPFMLdJb9OX-6MT2Qk3ocCfNSO2Egowzi0sbNhfVtBn2qeTlsenpsQ_8d3GFwmbt2r2weljvKn9SqggR_bjuNxIEJeNzxD6qSM";
+  var _accessToken = "BQAygpJNUF9jGJGvlOExkkRF-BnMFfOTOqLt77rakUFWGn-YhOA95V6HPAYSzm0pu6pAOWPwINnGDV4tzXjrVkQ-STiCIRsg17sP7nFF21q2P8v8dB611IybT4_i5Hly6nJTVZhFR8AO2gDiB8zdFeOxwmWv20AGeVLYCgFK6_WLPilO-OCOHvURqRbQVPc-KXSB_bPKSvVFYeKuLtsmnw82XqFwdpYHOTPtLfrSyfp1DSnlfuwgN7TIJV_48CzXdytMdivpji1V6qSNUtuZ2nx07CRgia4eMCZ_hoOTGV_kw60";
   var _promiseImplementation = null;
 
   var WrapPromiseWithAbort = function(promise, onAbort) {

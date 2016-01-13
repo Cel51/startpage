@@ -34,7 +34,7 @@ function init() {
 }
 function initTerminal() {
   $('#terminal').terminal({
-    "!google": function(arg1) {
+    "google": function(arg1) {
         new $.GoogleSearch().search(arg1, {}, function(data) {
           console.log(data)
         });
