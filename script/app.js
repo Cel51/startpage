@@ -1,7 +1,6 @@
 var tlLoading, tlDisplay;
 var username = "Cel51"
 var wLocation = ["784302","784201","783382"];
-var heightFirst = 200;
 
 $(document).ready(function (){
   init();
@@ -24,7 +23,7 @@ function init() {
     initGreetings();
     initWeather();
     initTimeLines();
-
+    initSpotify();
     initTerminal();
 
     tlLoading.play();
@@ -35,19 +34,52 @@ function init() {
 }
 function initTerminal() {
   $('#terminal').terminal({
-    "!g": function(arg1) {
-        $.getJSON('http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q='+arg1+'&rsz=large&callback=?', function(data) {
-          console.log(data);
+    "!google": function(arg1) {
+        new $.GoogleSearch().search(arg1, {}, function(data) {
+          console.log(data)
         });
     },
-    "!d": function(arg1) {
-        $.getJSON('http://api.duckduckgo.com/?q='+arg1+'&format=json&pretty=1&callback=?', function(data) {
-          console.log(data);
+    "spotify": {
+      "playlists" : function() {
+        term = this;
+
+        getPlaylistsSpotify().then(function(playlists) {
+
+          term.echo("\n");
+          term.echo("#### Listes des playlists ####");
+          term.echo("\n");
+
+          for(var i = 0; i < playlists.length; i++) {
+            var num = i;
+            if(num<10) num="0"+num;
+            term.echo("\t"+num+"\t"+playlists[i].name);
+          }
+
+          term.echo("\n");
+
+        }, function(err) {
+          term.echo("Please relaunch command");
         });
-    },
+      },
+      "playlist" : function(arg) {
+        term = this;
+        if(arg == null) {
+          term.error("An id must be passed")
+        } else {
+            getPlaylistSpotify(arg);
+        }
+
+      },
+      "help" : function() {
+        this.echo("playlists : Get playlists from Spotify");
+      },
+      "quit" : function() {
+        this.echo("Must press ctrl+d to quit");
+      }
+    }
   },
     {
-        greetings: 'Hello ' + username,
+        greetings: 'Welcome ' + username,
         name: 'shell',
         height: 0,
         prompt: username+'@homepage:~$ '
