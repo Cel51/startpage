@@ -4,11 +4,13 @@ var wLocation = ["784302","784201","783382"];
 
 $(document).ready(function (){
   init();
+  SC.initialize({
+    client_id: "be212a58528168962a39c64052c1d88e"
+  })
   setTimeout(function() {
     sizeUpdate();
   },2500)
 });
-
 $(window).resize(function (){
   sizeUpdate();
   resizeBg();
@@ -23,7 +25,6 @@ function init() {
     initGreetings();
     initWeather();
     initTimeLines();
-    initSpotify();
     initTerminal();
 
     tlLoading.play();
@@ -39,42 +40,15 @@ function initTerminal() {
           console.log(data)
         });
     },
-    "spotify": {
+    "sc": {
       "playlists" : function() {
-        term = this;
-
-        getPlaylistsSpotify().then(function(playlists) {
-
-          term.echo("\n");
-          term.echo("#### Listes des playlists ####");
-          term.echo("\n");
-
-          for(var i = 0; i < playlists.length; i++) {
-            var num = i;
-            if(num<10) num="0"+num;
-            term.echo("\t"+num+"\t"+playlists[i].name);
-          }
-
-          term.echo("\n");
-
-        }, function(err) {
-          term.echo("Please relaunch command");
-        });
+          initSoundCloud();
       },
       "playlist" : function(arg) {
-        term = this;
-        if(arg == null) {
-          term.error("An id must be passed")
-        } else {
-            getPlaylistSpotify(arg);
-        }
 
       },
-      "help" : function() {
-        this.echo("playlists : Get playlists from Spotify");
-      },
       "quit" : function() {
-        this.echo("Must press ctrl+d to quit");
+        this.error("Must press CTRL+D to exit");
       }
     }
   },
