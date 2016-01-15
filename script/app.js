@@ -3,6 +3,9 @@ var username = "Cel51"
 var wLocation = ["784302","784201","783382"];
 var player;
 
+var playlist;
+var currentSong = 0;
+
 $(document).ready(function (){
 
   SC.initialize({
@@ -46,8 +49,9 @@ function initTerminal() {
         });
     },
     "sc": {
-      "login" : function() {
-        var term = this;
+      "login": function() {
+        term = this;
+
         SC.connect(function() {
           SC.get('/me', function(me) {
             console.log(me);
@@ -58,16 +62,75 @@ function initTerminal() {
       "favorites" : function() {
         var term = this;
         SC.get('/me/favorites', function(favorites){
-          $(favorites).each(function(index, favorite) {
-            console.log(favorite.title);
-            term.echo(favorite.title);
-          });
+          console.log(favorites.errors != null);
+
+          if(favorites.errors == null) {
+
+            playlist = favorites;
+
+            term.echo("\n");
+            term.error("Load the favorites into current playlist");
+            term.echo("\n");
+
+            $(favorites).each(function(index, favorite) {
+              term.echo(index + "\t\t\t" +favorite.title);
+            });
+
+            term.echo("\n");
+          } else {
+            term.echo("\n");
+            term.error("Must login first, use command login");
+            term.echo("\n");
+          }
         });
       },
-      "set" : function() {
-        SC.stream('/tracks/211998447',function(playr){
+      "set" : function(arg1) {
+        var term = this;
+
+        if(arg1 == null)
+          arg1 = currentSong;
+        else
+          currentSong = arg1;
+
+        SC.stream('/tracks/'+playlist[arg1].id ,function(playr){
           player = playr;
+
+          term.echo("\n");
+          term.error(playlist[arg1].title+" is loaded");
+          term.echo("\n");
         });
+      },
+      "currentPlaylist": function() {
+        var term = this;
+
+        if(playlist != null) {
+          term.echo("\n");
+          term.error("Current playlist");
+          term.echo("\n");
+
+          $(playlist).each(function(index, track) {
+            term.echo(index + "\t\t\t" + track.title);
+          });
+
+          term.echo("\n");
+        } else {
+          term.echo("\n");
+          term.error("You must load a playlist first");
+          term.echo("\n");
+        }
+      },
+      "currentSong": function() {
+        if(playlist != null) {
+          term.echo("\n");
+          term.error("Current Song");
+          term.echo("\n");
+          term.echo(playlist[currentSong].title);
+          term.echo("\n");
+        } else {
+          term.echo("\n");
+          term.error("You must load a playlist first");
+          term.echo("\n");
+        }
       },
       "play" : function() {
           player.play();
