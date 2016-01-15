@@ -1,12 +1,17 @@
 var tlLoading, tlDisplay;
 var username = "Cel51"
 var wLocation = ["784302","784201","783382"];
+var player;
 
 $(document).ready(function (){
-  init();
+
   SC.initialize({
-    client_id: "be212a58528168962a39c64052c1d88e"
-  })
+    client_id: 'be212a58528168962a39c64052c1d88e',
+    redirect_uri: 'http://localhost:8002/'
+  });
+
+  init();
+
   setTimeout(function() {
     sizeUpdate();
   },2500)
@@ -41,11 +46,34 @@ function initTerminal() {
         });
     },
     "sc": {
-      "playlists" : function() {
-          initSoundCloud();
+      "login" : function() {
+        var term = this;
+        SC.connect(function() {
+          SC.get('/me', function(me) {
+            console.log(me);
+            term.echo("Welcome "+ me.username);
+          });
+        });
       },
-      "playlist" : function(arg) {
-
+      "favorites" : function() {
+        var term = this;
+        SC.get('/me/favorites', function(favorites){
+          $(favorites).each(function(index, favorite) {
+            console.log(favorite.title);
+            term.echo(favorite.title);
+          });
+        });
+      },
+      "set" : function() {
+        SC.stream('/tracks/211998447',function(playr){
+          player = playr;
+        });
+      },
+      "play" : function() {
+          player.play();
+      },
+      "pause" : function() {
+          player.pause();
       },
       "quit" : function() {
         this.error("Must press CTRL+D to exit");
