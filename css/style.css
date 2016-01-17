@@ -423,7 +423,7 @@ section.right-pannel {
   color: #e74c3c;
 }
 #terminal-board {
-  margin: 20px 0;
+  margin: 20px 0 0 0;
   border-top: rgba(52, 73, 94, 0.9) 1px solid;
   border-bottom: rgba(52, 73, 94, 0.9) 1px solid;
 }
@@ -435,7 +435,7 @@ section.right-pannel {
 .cmd {
   padding: 0;
   height: 1.3em;
-  position: relative
+  position: relative;
   /*margin-top: 3px; */
 }
 .terminal .inverted,
@@ -446,22 +446,9 @@ section.right-pannel {
 }
 .cmd .cursor.blink {
   -webkit-animation: terminal-blink 1s infinite steps(1, start);
-  -ms-animation: terminal-blink 1s infinite steps(1, start);
   animation: terminal-blink 1s infinite steps(1, start);
 }
 @-webkit-keyframes terminal-blink {
-  0%,
-  100% {
-    background-color: transparent;
-    color: #aaa;
-  }
-  50% {
-    background-color: #bbb;
-    /* not #aaa because it's seems there is Google Chrome bug */
-    color: transparent;
-  }
-}
-@-ms-keyframes terminal-blink {
   0%,
   100% {
     background-color: transparent;
@@ -511,7 +498,7 @@ section.right-pannel {
   display: inline-block;
 }
 .cmd span {
-  float: left
+  float: left;
   /*display: inline-block; */
 }
 /* fix double style of selecting text in terminal */
@@ -641,4 +628,28 @@ section.right-pannel {
 }
 .terminal a:hover {
   color: red;
+}
+#terminal-board .terminal {
+  visibility: hidden;
+  display: none;
+}
+#terminal-board .terminal.active {
+  visibility: visible;
+  display: block;
+}
+#terminals #tabs::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(52, 73, 94, 0.9);
+}
+#terminals #tabs span {
+  display: inline-block;
+  padding: 5px 3px;
+  color: rgba(127, 140, 141, 0.9);
+  cursor: pointer;
+}
+#terminals #tabs span.active {
+  color: rgba(236, 240, 241, 0.9);
 }
