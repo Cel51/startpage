@@ -1,7 +1,7 @@
 var tlLoading, tlDisplay;
 var username = "Cel51"
 var wLocation = ["784302","784201","783382"];
-var player;
+var player = null;
 
 var playlist;
 var currentSong = 0;
@@ -10,7 +10,7 @@ $(document).ready(function (){
 
   SC.initialize({
     client_id: 'be212a58528168962a39c64052c1d88e',
-    redirect_uri: 'http://localhost:8002/'
+    redirect_uri: 'http://localhost:8001/'
   });
 
   init();
@@ -59,48 +59,32 @@ function initTerminal() {
           });
         });
       },
-      "favorites" : function() {
-        var term = this;
-        SC.get('/me/favorites', function(favorites){
-          console.log(favorites.errors != null);
-
-          if(favorites.errors == null) {
-
-            playlist = favorites;
-
-            term.echo("\n");
-            term.error("Load the favorites into current playlist");
-            term.echo("\n");
-
-            $(favorites).each(function(index, favorite) {
-              term.echo(index + "\t\t\t" +favorite.title);
-            });
-
-            term.echo("\n");
-          } else {
-            term.echo("\n");
-            term.error("Must login first, use command login");
-            term.echo("\n");
-          }
-        });
-      },
-      "set" : function(arg1) {
+      "load" : function(arg) {
         var term = this;
 
-        if(arg1 == null)
-          arg1 = currentSong;
-        else
-          currentSong = arg1;
+        if(arg == "favorites") {
+          SC.get('/me/favorites', function(favorites){
+            if(favorites.errors == null) {
+              playlist = favorites;
 
-        SC.stream('/tracks/'+playlist[arg1].id ,function(playr){
-          player = playr;
+              term.echo("\n");
+              term.error("Load the favorites into current playlist");
+              term.echo("\n");
 
-          term.echo("\n");
-          term.error(playlist[arg1].title+" is loaded");
-          term.echo("\n");
-        });
+              $(favorites).each(function(index, favorite) {
+                term.echo(index + "\t\t\t" +favorite.title);
+              });
+
+              term.echo("\n");
+            } else {
+              term.echo("\n");
+              term.error("Must login first, use command login");
+              term.echo("\n");
+            }
+          });
+        }
       },
-      "currentPlaylist": function() {
+      "currentplaylist": function() {
         var term = this;
 
         if(playlist != null) {
@@ -109,7 +93,11 @@ function initTerminal() {
           term.echo("\n");
 
           $(playlist).each(function(index, track) {
-            term.echo(index + "\t\t\t" + track.title);
+            if(index == currentSong) {
+                term.error(index + "\t\t\t" + track.title);
+            } else {
+              term.echo(index + "\t\t\t" + track.title);
+            }
           });
 
           term.echo("\n");
@@ -119,12 +107,12 @@ function initTerminal() {
           term.echo("\n");
         }
       },
-      "currentSong": function() {
+      "currentsong": function() {
+        var term = this;
+
         if(playlist != null) {
           term.echo("\n");
-          term.error("Current Song");
-          term.echo("\n");
-          term.echo(playlist[currentSong].title);
+          term.error(playlist[currentSong].title+" is currently playing");
           term.echo("\n");
         } else {
           term.echo("\n");
@@ -132,11 +120,96 @@ function initTerminal() {
           term.echo("\n");
         }
       },
-      "play" : function() {
-          player.play();
+      "play" : function(arg) {
+        var term = this;
+
+        if(playlist != null) {
+          if(arg != null) {
+            if(arg > playlist.length-1) {
+              arg = playlist.length-1;
+            } else if (arg < 0) {
+              arg = 0;
+            }
+            currentSong = arg;
+          }
+
+          if(player != null)
+            player.pause();
+
+          SC.stream('/tracks/'+playlist[currentSong].id ,function(playr){
+            player = playr;
+            term.echo("\n");
+            term.error(playlist[currentSong].title+" is playing");
+            term.echo("\n");
+            player.play();
+          });
+        } else {
+          term.echo("\n");
+          term.error("No playlist loaded");
+          term.echo("\n");
+        }
       },
       "pause" : function() {
+        var term = this;
+
+        if(playlist != null) {
+          term.echo("\n");
+          term.error(playlist[currentSong].title+" is paused");
+          term.echo("\n");
           player.pause();
+        } else {
+          term.echo("\n");
+          term.error("No playlist loaded");
+          term.echo("\n");
+        }
+      },
+      "next": function() {
+        var term = this;
+
+        if(playlist != null) {
+          if(currentSong == playlist.length-1) {
+            currentSong = 0;
+          } else {
+            currentSong += 1;
+          }
+
+          player.pause();
+          SC.stream('/tracks/'+playlist[currentSong].id ,function(playr){
+            player = playr;
+            term.echo("\n");
+            term.error(playlist[currentSong].title+" is playing");
+            term.echo("\n");
+            player.play();
+          });
+        } else {
+          term.echo("\n");
+          term.error("No playlist loaded");
+          term.echo("\n");
+        }
+      },
+      "prev": function() {
+        var term = this;
+
+        if(playlist != null){
+          if(currentSong == 0) {
+            currentSong = playlist.length-1;
+          } else {
+            currentSong -= 1;
+          }
+
+          player.pause();
+          SC.stream('/tracks/'+playlist[currentSong].id ,function(playr){
+            player = playr;
+            term.echo("\n");
+            term.error(playlist[currentSong].title+" is playing");
+            term.echo("\n");
+            player.play();
+          });
+        } else {
+          term.echo("\n");
+          term.error("No playlist loaded");
+          term.echo("\n");
+        }
       },
       "quit" : function() {
         this.error("Must press CTRL+D to exit");
