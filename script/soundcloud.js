@@ -14,7 +14,7 @@ function initSoundcloud() {
     });
   });
 
-  $('.terminal#sc').terminal({
+  scT = $('.terminal#sc').terminal({
   "load" : {
     "likes": function() {
       var term = this;
@@ -234,12 +234,27 @@ function initSoundcloud() {
     this.echo("To quit the load function press CTRL+D");
     this.echo("\n");
   },
-  "goto": function(arg) {
-    if(arg != "main" && arg != "cff") arg = main;
-
-    showTab(arg);
+  "main": function() {
+      showTab("main");
+      mainT.focus(true);
   },
-  },  {
+  "sc": function() {
+      if($(".terminal#sc").length == 0) {
+          addTab("sc", "SC");
+          initSoundcloud();
+      }
+      showTab("sc");
+      scT.focus(true);
+  },
+  "cff": function() {
+      if($(".terminal#cff").length == 0) {
+          addTab("cff", "CFF");
+          initCFF();
+      }
+      showTab("cff");
+      cffT.focus(true);
+  }
+  },{
         greetings: 'Welcome to SoundCloud ' + username + '\n\nType help for informations',
         name: 'soundcloud',
         height: 0,

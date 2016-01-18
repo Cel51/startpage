@@ -1,5 +1,5 @@
 function initCFF() {
-  $('.terminal#cff').terminal({
+  cffT = $('.terminal#cff').terminal({
     "travel": {
       "connections" :function(fromLocation, toLocation, date, time) {
 
@@ -23,14 +23,28 @@ function initCFF() {
         });
       }
     },
-
-    "goto": function(arg) {
-      if(arg != "main" && arg != "sc") arg = main;
-
-      showTab(arg);
-    }
-  },  {
-          greetings: 'Welcome ' + username,
+    "main": function() {
+          showTab("main");
+          mainT.focus(true);
+      },
+    "sc": function() {
+          if($(".terminal#sc").length == 0) {
+              addTab("sc", "SC");
+              initSoundcloud();
+          }
+          showTab("sc");
+          scT.focus(true);
+      },
+    "cff": function() {
+          if($(".terminal#cff").length == 0) {
+              addTab("cff", "CFF");
+              initCFF();
+          }
+          showTab("cff");
+          cffT.focus(true);
+      }
+  }, {
+          greetings: 'Welcome to CFF ' + username,
           name: 'CFF',
           height: 0,
           prompt: 'CFF > '
