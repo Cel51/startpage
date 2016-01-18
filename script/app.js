@@ -26,14 +26,23 @@ function initTerminal() {
           });
       },
       "sc": function() {
-        addTab("sc", "SoundCloud");
+        if($(".terminal#sc").length == 0)
+          addTab("sc", "SoundCloud");
+
         showTab("sc");
         initSoundcloud();
       },
       "cff": function() {
-        addTab("cff", "CFF");
+        if($(".terminal#cff").length == 0)
+          addTab("cff", "CFF");
+
         showTab("cff");
         initCFF();
+      },
+      "goto": function(arg) {
+        if(arg != "cff" && arg != "sc") arg = main;
+
+        showTab(arg);
       }
   },
     {
@@ -135,7 +144,7 @@ function initClock() {
 
 function sizeUpdate() {
   $("#terminal-board").css({height: $("#main-board").height()-2});
-  $(".terminal").css({height: $("#main-board").height()-20});
+  $(".terminal").css({height: $("#main-board").height()-10});
 }
 function addTab(tab, name) {
   $("#tabs").append('<span id="'+tab+'" class="t-tab">'+name+'</span>');

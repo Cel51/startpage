@@ -69,6 +69,10 @@ body {
 }
 #main-board {
   height: auto;
+  display: inline;
+  float: left;
+  width: 98.95833333%;
+  margin: 0 0.52083333%;
   margin-top: 20px;
 }
 #main-board .text {
@@ -119,6 +123,10 @@ body {
 }
 #greetings-board {
   height: auto;
+  display: inline;
+  float: left;
+  width: 98.95833333%;
+  margin: 0 0.52083333%;
 }
 #greetings-board::after {
   content: "";
@@ -169,6 +177,10 @@ body {
 }
 #weather-board {
   color: #fff;
+  display: inline;
+  float: left;
+  width: 98.95833333%;
+  margin: 0 0.52083333%;
   height: auto;
 }
 #weather-board::after {
@@ -435,7 +447,7 @@ section.right-pannel {
 .cmd {
   padding: 0;
   height: 1.3em;
-  position: relative;
+  position: relative
   /*margin-top: 3px; */
 }
 .terminal .inverted,
@@ -446,9 +458,22 @@ section.right-pannel {
 }
 .cmd .cursor.blink {
   -webkit-animation: terminal-blink 1s infinite steps(1, start);
+  -ms-animation: terminal-blink 1s infinite steps(1, start);
   animation: terminal-blink 1s infinite steps(1, start);
 }
 @-webkit-keyframes terminal-blink {
+  0%,
+  100% {
+    background-color: transparent;
+    color: #aaa;
+  }
+  50% {
+    background-color: #bbb;
+    /* not #aaa because it's seems there is Google Chrome bug */
+    color: transparent;
+  }
+}
+@-ms-keyframes terminal-blink {
   0%,
   100% {
     background-color: transparent;
@@ -498,7 +523,7 @@ section.right-pannel {
   display: inline-block;
 }
 .cmd span {
-  float: left;
+  float: left
   /*display: inline-block; */
 }
 /* fix double style of selecting text in terminal */
@@ -629,6 +654,12 @@ section.right-pannel {
 .terminal a:hover {
   color: red;
 }
+#terminal-board {
+  display: inline;
+  float: left;
+  width: 98.95833333%;
+  margin: 0 0.52083333%;
+}
 #terminal-board .terminal {
   visibility: hidden;
   display: none;
@@ -636,6 +667,15 @@ section.right-pannel {
 #terminal-board .terminal.active {
   visibility: visible;
   display: block;
+}
+#terminals {
+  margin-top: 20px;
+}
+#terminals #tabs {
+  display: inline;
+  float: left;
+  width: 98.95833333%;
+  margin: 0 0.52083333%;
 }
 #terminals #tabs::after {
   content: "";
@@ -652,4 +692,46 @@ section.right-pannel {
 }
 #terminals #tabs span.active {
   color: rgba(236, 240, 241, 0.9);
+}
+#cff-pannel {
+  height: auto;
+  display: inline;
+  float: left;
+  width: 23.95833333%;
+  margin: 0 0.52083333%;
+  margin-top: 20px;
+}
+#cff-pannel::after,
+#cff-pannel::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(52, 73, 94, 0.9);
+}
+#cff-pannel p {
+  color: rgba(236, 240, 241, 0.9);
+  padding: 10px;
+  text-transform: uppercase;
+  letter-spacing: .3em;
+}
+#cff-pannel .connections .connection {
+  width: 100%;
+  margin-bottom: 10px;
+  border-top: 1px solid rgba(127, 140, 141, 0.9);
+  border-bottom: 1px solid rgba(127, 140, 141, 0.9);
+}
+#cff-pannel .connections .connection .lbl {
+  font-size: 10px;
+  padding: 3px 0;
+  color: rgba(236, 240, 241, 0.9);
+  text-transform: uppercase;
+  letter-spacing: .3em;
+}
+#cff-pannel .connections .connection .val {
+  font-size: 10px;
+  padding: 3px 0;
+  color: rgba(127, 140, 141, 0.9);
+  text-transform: uppercase;
+  letter-spacing: .3em;
 }
