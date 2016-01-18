@@ -1,14 +1,10 @@
 #greetings-board {
-  height: auto;
-  .column(24);
 
-  &::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 1px;
-    background-color: @color-3;
-  }
+  .column(24);
+  height: auto;
+  background: @color-bg;
+  border-bottom: @color-3 1px solid;
+
   p {
     padding: 10px;
     text-transform: uppercase;

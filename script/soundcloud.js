@@ -6,7 +6,7 @@ function initSoundcloud() {
 
   SC.initialize({
     client_id: 'be212a58528168962a39c64052c1d88e',
-    redirect_uri: 'http://localhost:8002/'
+    redirect_uri: 'http://localhost:8001/'
   });
   SC.connect(function() {
     SC.get('/me', function(me) {
@@ -14,7 +14,7 @@ function initSoundcloud() {
     });
   });
 
-  scT = $('.terminal#sc').terminal({
+  scT = $('.terminal-term.sc #sc').terminal({
   "load" : {
     "likes": function() {
       var term = this;
@@ -256,7 +256,7 @@ function initSoundcloud() {
   }
   },{
         greetings: 'Welcome to SoundCloud ' + username + '\n\nType help for informations',
-        name: 'soundcloud',
+        name: 'sc',
         height: 0,
         prompt: 'SoundCloud > '
     }

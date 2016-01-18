@@ -9,6 +9,8 @@ function init() {
   initTimeLines();
   initTerminal();
 
+  $("body").backstretch("images/back.jpg");
+
   tlLoading.play();
   setTimeout(function() {
     tlLoading.pause();
@@ -17,7 +19,7 @@ function init() {
 }
 
 function initTerminal() {
-  mainT = $('.terminal#main').terminal({
+  mainT = $('.terminal-term.main #main').terminal({
     "google": function(arg1) {
       new $.GoogleSearch().search(arg1, {}, function(data) {
         console.log(data)
@@ -45,7 +47,7 @@ function initTerminal() {
     }
   }, {
     greetings: 'Welcome ' + username,
-    name: 'shell',
+    name: 'main',
     height: 0,
     prompt: username + '@homepage:~$ '
   });
@@ -125,14 +127,14 @@ function initTimeLines() {
       autoAlpha: 0,
       marginTop: "-20"
     })
-    .from($("#terminal-board"), .2, {
-      autoAlpha: 0,
-      marginTop: "-20"
-    })
-    .from($("#tabs"), .2, {
-      autoAlpha: 0,
-      marginTop: "-20"
-    })
+    // .from($("#terminal-board"), .2, {
+    //   autoAlpha: 0,
+    //   marginTop: "-20"
+    // })
+    // .from($("#tabs"), .2, {
+    //   autoAlpha: 0,
+    //   marginTop: "-20"
+    // })
     .timeScale(1.2)
     //.timeScale(5)
     .pause();
@@ -175,17 +177,17 @@ function initClock() {
 }
 
 function sizeUpdate() {
-  $("#terminal-board").css({
-    height: $("#main-board").height() - 2
-  });
-  $(".terminal").css({
-    height: $("#main-board").height() - 10
-  });
+  // $("#terminal-board").css({
+  //   height: $("#main-board").height() - 2
+  // });
+  // $(".terminal").css({
+  //   height: $("#main-board").height() - 10
+  // });
 }
 
 function addTab(tab, name) {
   $("#tabs").append('<span id="' + tab + '" class="t-tab">' + name + '</span>');
-  $("#terminal-board").append('<div id="' + tab + '" class="terminal"></div>');
+  $("#terminal-board .terminals").append('<div class="terminal-term '+tab+'"><div id="' + tab + '"></div></div>');
 
   $(".t-tab").click(function() {
     showTab($(this).attr('id'));
@@ -193,14 +195,14 @@ function addTab(tab, name) {
 }
 
 function showTab(tab) {
-  $(".terminal.active").removeClass("active");
-  $(".terminal#" + tab).addClass("active");
+  $(".terminal-term.active").removeClass("active");
+  $(".terminal-term #" + tab).parent().addClass("active");
   $("#tabs span.active").removeClass("active");
   $("#tabs span#" + tab).addClass("active");
 
-  $(".terminal#" + tab).css({
-    height: $("#main-board").height() - 20
-  });
+  // $(".terminal#" + tab).css({
+  //   height: $("#main-board").height() - 20
+  // });
 }
 
 $(document).ready(function() {

@@ -1,5 +1,5 @@
 function initCFF() {
-  cffT = $('.terminal#cff').terminal({
+  cffT = $('.terminal-term.cff #cff').terminal({
     "travel": {
       "connections" :function(fromLocation, toLocation, date, time) {
 
@@ -10,16 +10,7 @@ function initCFF() {
 
         $.get("http://transport.opendata.ch/v1/connections?from="+fromLocation+"&to="+toLocation+"&date="+date+"&time="+time,
         function(data) {
-          $(data.connections).each(function(index, connection){
-            console.log(connection);
-            term.echo("\n");term.error("Option "+index);term.echo("\n");
-            term.echo("Departure : " + convertDate(connection.from.departure));
-            term.echo("Arrival : " + convertDate(connection.to.arrival));
-            term.echo("Duration : " + connection.duration);
-            term.echo("Capacity 1st Class : "+connection.capacity1st+"/3");
-            term.echo("Capacity 2nd Class : "+connection.capacity2nd+"/3");
-            term.echo("\n");
-          });
+          createCFFdata(data);
         });
       }
     },
@@ -45,10 +36,68 @@ function initCFF() {
       }
   }, {
           greetings: 'Welcome to CFF ' + username,
-          name: 'CFF',
+          name: 'cff',
           height: 0,
           prompt: 'CFF > '
       });
+}
+function createCFFdata(data) {
+  var element = "";
+  element += ''+
+  '<div class="informations cff">'+
+    '<div class="travels">'+
+      '<p class="title">CFF informations</p>';
+
+      // $(data.connections).each(function(index, object) {
+        element += ''+
+        '<div class="travel">'+
+            '<div class="sections">';
+
+          $(data.connections[0].sections).each(function(index, section) {
+            if(section.journey.category == "") section.journey.category = "&nbsp;";
+            if(section.departure.platform == "") section.departure.platform = "&nbsp;";
+            if(section.arrival.platform == "") section.arrival.platform = "&nbsp;";
+            element+= ''+
+            '<div class="section">'+
+              '<p class="title">Section '+index+'</p>'+
+                '<div class="time">'+
+                  '<div class="departure-time">'+
+                    '<p>'+convertDate(section.departure.departure)+'</p>'+
+                  '</div>'+
+                  '<div class="arrival-time">'+
+                    '<p>'+convertDate(section.arrival.arrival)+'</p>'+
+                  '</div>'+
+                  '</div>'+
+                  '<div class="journey">'+
+                    // '<div class="duration-journey">'+
+                    //   '<p>'+section.duration+'</p>'+
+                    // '</div>'+
+                  '<div class="train-journey">'+
+                      '<p>'+section.journey.category+'</p>'+
+                  '</div>'+
+                  '</div>'+
+                  '<div class="platform">'+
+                    '<p>'+section.departure.platform+'</p>'+
+                    '<p>'+section.arrival.platform+'</p>'+
+                  '</div>'+
+                  '<div class="location">'+
+                    '<p>'+section.departure.location.name+'</p>'+
+                    '<p>'+section.arrival.location.name+'</p>'+
+                  '</div>'+
+            '</div>'
+          })
+
+        element += ''+
+          '</div>'+
+        '</div>';
+      // });
+
+  element+= ''+
+      '</div>'+
+    '</div>'+
+  '</div>';
+
+  $(".mid-pannel").append(element);
 }
 function convertDate(date) {
   var ddate = new Date(date);
@@ -60,7 +109,7 @@ function convertDate(date) {
   if(m<10)
     m='0'+m;
 
-  return h+"h"+m+"m";
+  return h+":"+m;
 }
 function cffDate() {
   var today = new Date();
