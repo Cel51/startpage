@@ -159,7 +159,7 @@ section.right-pannel {
 .cmd {
   padding: 0;
   height: 1.3em;
-  position: relative
+  position: relative;
   /*margin-top: 3px; */
 }
 .terminal .inverted,
@@ -170,22 +170,9 @@ section.right-pannel {
 }
 .cmd .cursor.blink {
   -webkit-animation: terminal-blink 1s infinite steps(1, start);
-  -ms-animation: terminal-blink 1s infinite steps(1, start);
   animation: terminal-blink 1s infinite steps(1, start);
 }
 @-webkit-keyframes terminal-blink {
-  0%,
-  100% {
-    background-color: transparent;
-    color: #aaa;
-  }
-  50% {
-    background-color: #bbb;
-    /* not #aaa because it's seems there is Google Chrome bug */
-    color: transparent;
-  }
-}
-@-ms-keyframes terminal-blink {
   0%,
   100% {
     background-color: transparent;
@@ -235,7 +222,7 @@ section.right-pannel {
   display: inline-block;
 }
 .cmd span {
-  float: left
+  float: left;
   /*display: inline-block; */
 }
 /* fix double style of selecting text in terminal */
@@ -401,7 +388,16 @@ section.right-pannel {
   font-family: Roboto Light, Verdana, Tahoma, Arial, Helvetica, sans-serif !important;
 }
 #main-board .image {
+  *zoom: 1;
   text-align: center;
+}
+#main-board .image:before,
+#main-board .image:after {
+  content: "";
+  display: table;
+}
+#main-board .image:after {
+  clear: both;
 }
 #main-board .squares {
   margin: 5px 0 15px;
@@ -857,10 +853,63 @@ section.right-pannel {
   clear: both;
 }
 #favorites-board .favorites .favorite {
+  display: block;
+  display: inline;
+  float: left;
+  width: 32.29166667%;
+  margin: 0 0.52083333%;
+  *zoom: 1;
+  margin-bottom: 20px;
+}
+#favorites-board .favorites .favorite:before,
+#favorites-board .favorites .favorite:after {
+  content: "";
+  display: table;
+}
+#favorites-board .favorites .favorite:after {
+  clear: both;
+}
+#favorites-board .favorites .favorite p.title {
+  padding: 10px 0;
+  text-transform: uppercase;
+  font-size: 1em;
+  letter-spacing: .3em;
+  font-family: Roboto Light, Verdana, Tahoma, Arial, Helvetica, sans-serif !important;
+}
+#favorites-board .favorites .favorite ul,
+#favorites-board .favorites .favorite li {
+  list-style: none;
+}
+#favorites-board .favorites .favorite ul span,
+#favorites-board .favorites .favorite li span {
+  display: inline-block;
+}
+#favorites-board .favorites .favorite ul span.short,
+#favorites-board .favorites .favorite li span.short {
   display: inline;
   float: left;
   width: 23.95833333%;
   margin: 0 0.52083333%;
+}
+#favorites-board .favorites .favorite ul span.short a,
+#favorites-board .favorites .favorite li span.short a {
+  color: #a9abac;
+  text-decoration: none;
+}
+#favorites-board .favorites .favorite ul span.link,
+#favorites-board .favorites .favorite li span.link {
+  display: inline;
+  float: left;
+  width: 73.95833333%;
+  margin: 0 0.52083333%;
+}
+#favorites-board .favorites .favorite ul span.link a,
+#favorites-board .favorites .favorite li span.link a {
+  color: rgba(236, 240, 241, 0.9);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #search-wrapper {
   height: auto;

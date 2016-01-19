@@ -9,6 +9,9 @@ function init() {
   initTimeLines();
   initTerminal();
 
+  loadFavorites();
+  sizeUpdate();
+
   $("body").backstretch("images/back.jpg");
 
   tlLoading.play();
@@ -24,6 +27,16 @@ function initTerminal() {
       new $.GoogleSearch().search(arg1, {}, function(data) {
         console.log(data)
       });
+    },
+    "f": function(arg1) {
+      for(var i = 0; i < favorites.length; i++) {
+        for(var j = 0; j < favorites[i][1].length; j++) {
+          if(arg1 == favorites[i][1][j][2]) {
+            var win = window.open(favorites[i][1][j][1], '_blank');
+            win.focus();
+          }
+        }
+      }
     },
     "main": function() {
       showTab("main");
@@ -177,12 +190,12 @@ function initClock() {
 }
 
 function sizeUpdate() {
-  // $("#terminal-board").css({
-  //   height: $("#main-board").height() - 2
-  // });
-  // $(".terminal").css({
-  //   height: $("#main-board").height() - 10
-  // });
+  var mxHeight = 0;
+  $("#favorites-board .favorite").each(function(index, elem){
+     if(mxHeight <= $(elem).height())
+        mxHeight = $(elem).height();
+  });
+  $("#favorites-board .favorite").height(mxHeight);
 }
 
 function addTab(tab, name) {
