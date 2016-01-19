@@ -1,9 +1,8 @@
-#favorites-wrapper {
+#search-wrapper {
   height: auto;
   .row();
-  margin-top: 10px;
 }
-#favorites-board {
+#search-board {
   .column(24);
   color: @color-1;
   padding: 10px;
@@ -20,10 +19,12 @@
     .setFont-family(Roboto Light);
   }
 
-  .favorites {
-    .clearfix();
-    .favorite {
-      .column(24/4);
-    }
+  input {
+    background-color: @color-bg/2;
+    color: @color-1;
+    border: 1px solid @color-3;
+    width: 100%;
+    padding: 2px 5px;
+    outline: none;
   }
 }
