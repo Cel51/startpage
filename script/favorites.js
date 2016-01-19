@@ -26,7 +26,7 @@ var favorites = [
       ["LoL", "https://www.reddit.com/r/leagueoflegends/", "lol"],
       ["4chan", "https://www.reddit.com/r/4chan/", "4ch"],
       ["Monster Hunter", "https://www.reddit.com/r/MonsterHunter/", "mh"],
-      ["Programmer Humour", "https://www.reddit.com/r/MonsterHunter/", "ph"]
+      ["Programmer Humor", "https://www.reddit.com/r/ProgrammerHumor/", "ph"]
     ]
   ],
   [ "4chan",
