@@ -12,7 +12,7 @@ function init() {
 
   sizeUpdate();
 
-  $("body").backstretch("images/back.png");
+  $("body").backstretch("images/back.jpg");
 
   tlDisplay.play();
 
