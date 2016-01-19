@@ -1,23 +1,23 @@
 var favorites = [
   [ "Work",
     [
-      ["CPNV" , "http://intranet.cpnv.ch/", "cpnv"],
-      ["Github" , "https://github.com/", "gh"],
-      ["Gmail" , "https://mail.google.com/mail/u/0/#inbox", "gm"],
-      ["Bitbucket" , "http://bitbucket.org", "bb"]
+      ["cpnv" , "http://intranet.cpnv.ch/", "cpnv"],
+      ["github" , "https://github.com/", "gh"],
+      ["gmail" , "https://mail.google.com/mail/u/0/#inbox", "gm"],
+      ["bitbucket" , "http://bitbucket.org", "bb"]
     ]
   ],
   [ "Social",
     [
-      ["Whatsapp" , "https://web.whatsapp.com/", "wa"],
-      ["Hangouts" , "http://hangouts.google.com", "hang"],
-      ["Facebook" , "https://www.facebook.com/" , "fb"],
-      ["Twitter" , "https://twitter.com/", "twi"]
+      ["whatsapp" , "https://web.whatsapp.com/", "wa"],
+      ["hangouts" , "http://hangouts.google.com", "hang"],
+      ["facebook" , "https://www.facebook.com/" , "fb"],
+      ["twitter" , "https://twitter.com/", "twi"]
     ]
   ],
   [ "Download",
     [
-      ["ThePirateBay", "http://http://thepiratebay.se", "tpb"],
+      ["thepiratebay", "http://thepiratebay.se", "tpb"],
       ["T411", "http://www.t411.in/", "t411"]
     ]
   ],
@@ -38,13 +38,13 @@ var favorites = [
   ],
   [ "Others",
     [
-      ["Hugelol", "http://hugelol.com", "hgl"],
-      ["Hiddenlol", "http://hiddenlol.com", "hdl"]
+      ["hugelol", "http://hugelol.com", "hgl"],
+      ["hiddenlol", "http://hiddenlol.com", "hdl"]
     ]
   ]
 ]
 
-function loadFavorites() {
+function initFavorites() {
   var element = "";
   $(favorites).each(function(index, group) {
     element += ''+
