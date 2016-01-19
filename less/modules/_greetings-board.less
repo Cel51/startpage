@@ -1,15 +1,24 @@
-#greetings-board {
-
-  .column(24);
+#greetings-wrapper {
   height: auto;
+  //margin-top: 10px;
+  .row();
+}
+#greetings-board {
+  .column(24);
+  padding: 10px;
+  color: @color-1;
   background: @color-bg;
+  //border-top: @color-3 1px solid;
   border-bottom: @color-3 1px solid;
 
   p {
-    padding: 10px;
     text-transform: uppercase;
     letter-spacing: .3em;
+    padding: 10px 0;
+
     .setFont-family(Roboto Light);
+
+
     &.greetings-helloworld {
       color: @color-2;
       font-size: 1.2em;

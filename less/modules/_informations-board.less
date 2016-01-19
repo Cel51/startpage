@@ -1,0 +1,50 @@
+#informations-wrapper {
+  height: auto;
+  .row();
+  margin-top: 10px;
+}
+#informations-board {
+
+  .informations {
+    .column(24);
+    color: @color-1;
+    padding: 10px;
+    background: @color-bg;
+    border-bottom: @color-3 1px solid;
+
+    &:first-child {
+      border-top: @color-3 1px solid;
+    }
+
+    &.cff {
+      .travels {
+        padding: 10px;
+        p.title {
+          font-size: 1.2em;
+          text-transform: uppercase;
+          letter-spacing: .3em;
+        }
+        .travel {
+          margin: 10px 0;
+          div.sections {
+            p.title {
+              margin-top: 5px;
+              font-size: 0.9em;
+              text-transform: uppercase;
+              letter-spacing: .3em;
+            }
+          }
+          div.title {
+            text-transform: uppercase;
+            letter-spacing: .3em;
+            color: @color-1*0.8;
+          }
+          div.time, div.journey, div.platform, div.location {
+            .column(24/4);
+            margin: 10px 0;
+          }
+        }
+      }
+    }
+  }
+}

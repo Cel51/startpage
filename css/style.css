@@ -52,35 +52,348 @@ body {
   background-attachment: fixed;
   background-image: url(../images/back.jpg);
 }
-* {
-  margin: 0;
-  padding: 0;
-  font-family: Roboto Light, Verdana, Tahoma, Arial, Helvetica, sans-serif !important;
-}
-/* ----------------------------------------------------- HEADER   ------------------------------------------------------*/
-/* ----------------------------------------------------- CONTENT  ------------------------------------------------------*/
-/* ----------------------------------------------------- FOOTER   ------------------------------------------------------*/
-/* ----------------------------------------------------- MODULES  ------------------------------------------------------*/
-#large-header {
+body #large-header {
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: -999;
 }
-#main-board {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Roboto Light, Verdana, Tahoma, Arial, Helvetica, sans-serif !important;
+}
+/* ----------------------------------------------------- MODULES  ------------------------------------------------------*/
+section.left-pannel {
+  display: inline;
+  float: left;
+  width: 23.95833333%;
+  margin: 0 0.52083333%;
+  margin-top: 10px;
+  min-height: 1px;
   height: auto;
+}
+section.mid-pannel {
+  display: inline;
+  float: left;
+  width: 48.95833333%;
+  margin: 0 0.52083333%;
+  margin-top: 10px;
+  min-height: 1px;
+  height: auto;
+}
+section.right-pannel {
+  display: inline;
+  float: left;
+  width: 23.95833333%;
+  margin: 0 0.52083333%;
+  margin-top: 10px;
+  min-height: 1px;
+  height: auto;
+}
+.terminal .terminal-output .format,
+.cmd .format,
+.cmd .prompt,
+.cmd .prompt div,
+.terminal .terminal-output div div {
+  display: inline-block;
+}
+.cmd .mask,
+.cmd .clipboard {
+  position: absolute;
+  display: block;
+  bottom: 0;
+  height: 16px;
+  left: -10px;
+}
+.terminal h1,
+.terminal h2,
+.terminal h3,
+.terminal h4,
+.terminal h5,
+.terminal h6,
+.terminal pre,
+.cmd {
+  margin: 0;
+}
+.terminal h1,
+.terminal h2,
+.terminal h3,
+.terminal h4,
+.terminal h5,
+.terminal h6 {
+  line-height: 1.2em;
+}
+.wrap {
+  word-wrap: break-word;
+  overflow: initial;
+}
+.cmd .clipboard {
+  /* this seems to work after all on Android */
+  left: -99999px;
+  clip: rect(1px, 1px, 1px, 1px);
+  /* on desktop textarea appear when paste */
+  /*
+    opacity: 0.01;
+    filter: alpha(opacity = 0.01);
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0.01);
+    */
+  width: 10px;
+  /* textarea need to have width or it will not work on Android */
+  height: 10px;
+  padding: 0;
+  resize: none;
+  border: none;
+  z-index: 0;
+  overflow: hidden;
+  outline: none;
+}
+.terminal .error {
+  color: #e74c3c;
+}
+.terminal {
+  position: relative;
+  overflow: hidden;
+}
+.cmd {
+  padding: 0;
+  height: 1.3em;
+  position: relative
+  /*margin-top: 3px; */
+}
+.terminal .inverted,
+.cmd .inverted,
+.cmd .cursor.blink {
+  background-color: transparent;
+  color: transparent;
+}
+.cmd .cursor.blink {
+  -webkit-animation: terminal-blink 1s infinite steps(1, start);
+  -ms-animation: terminal-blink 1s infinite steps(1, start);
+  animation: terminal-blink 1s infinite steps(1, start);
+}
+@-webkit-keyframes terminal-blink {
+  0%,
+  100% {
+    background-color: transparent;
+    color: #aaa;
+  }
+  50% {
+    background-color: #bbb;
+    /* not #aaa because it's seems there is Google Chrome bug */
+    color: transparent;
+  }
+}
+@-ms-keyframes terminal-blink {
+  0%,
+  100% {
+    background-color: transparent;
+    color: #aaa;
+  }
+  50% {
+    background-color: #bbb;
+    /* not #aaa because it's seems there is Google Chrome bug */
+    color: transparent;
+  }
+}
+@keyframes terminal-blink {
+  0%,
+  100% {
+    background-color: transparent;
+    color: #aaa;
+  }
+  50% {
+    background-color: #bbb;
+    /* not #aaa because it's seems there is Google Chrome bug */
+    color: transparent;
+  }
+}
+.terminal .terminal-output div div,
+.cmd .prompt {
+  display: block;
+  line-height: 14px;
+  height: auto;
+}
+.cmd .prompt {
+  float: left;
+}
+.terminal,
+.cmd {
+  font-family: Roboto Light, Verdana, Tahoma, Arial, Helvetica, sans-serif !important;
+  /*font-family: FreeMono, monospace; this don't work on Android */
+  color: rgba(236, 240, 241, 0.9);
+  background-color: transparent;
+  font-size: 14px;
+  line-height: 16px;
+}
+.terminal-output > div {
+  /*padding-top: 3px;*/
+  min-height: 14px;
+}
+.terminal .terminal-output div span {
+  display: inline-block;
+}
+.cmd span {
+  float: left
+  /*display: inline-block; */
+}
+/* fix double style of selecting text in terminal */
+.terminal-output span,
+.terminal-output a,
+.cmd div,
+.cmd span,
+.terminal td,
+.terminal pre,
+.terminal h1,
+.terminal h2,
+.terminal h3,
+.terminal h4,
+.terminal h5,
+.terminal h6 {
+  -webkit-touch-callout: initial;
+  -webkit-user-select: initial;
+  -khtml-user-select: initial;
+  -moz-user-select: initial;
+  -ms-user-select: initial;
+  user-select: initial;
+}
+.terminal,
+.terminal-output,
+.terminal-output div {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* firefox hack */
+@-moz-document url-prefix() {
+  .terminal,
+  .terminal-output,
+  .terminal-output div {
+    -webkit-touch-callout: initial;
+    -webkit-user-select: initial;
+    -khtml-user-select: initial;
+    -moz-user-select: initial;
+    -ms-user-select: initial;
+    user-select: initial;
+  }
+}
+.terminal table {
+  border-collapse: collapse;
+}
+.terminal td {
+  border: 1px solid #aaa;
+}
+.terminal h1::-moz-selection,
+.terminal h2::-moz-selection,
+.terminal h3::-moz-selection,
+.terminal h4::-moz-selection,
+.terminal h5::-moz-selection,
+.terminal h6::-moz-selection,
+.terminal pre::-moz-selection,
+.terminal td::-moz-selection,
+.terminal .terminal-output div div::-moz-selection,
+.terminal .terminal-output div span::-moz-selection,
+.terminal .terminal-output div div a::-moz-selection,
+.cmd div::-moz-selection,
+.cmd > span::-moz-selection,
+.cmd .prompt span::-moz-selection {
+  background-color: #aaa;
+  color: #000;
+}
+/* this don't work in Chrome
+.terminal tr td::-moz-selection {
+    border-color: #000;
+}
+.terminal tr td::selection {
+    border-color: #000;
+}
+*/
+.terminal h1::-moz-selection,
+.terminal h2::-moz-selection,
+.terminal h3::-moz-selection,
+.terminal h4::-moz-selection,
+.terminal h5::-moz-selection,
+.terminal h6::-moz-selection,
+.terminal pre::-moz-selection,
+.terminal td::-moz-selection,
+.terminal .terminal-output div div::-moz-selection,
+.terminal .terminal-output div div a::-moz-selection,
+.terminal .terminal-output div span::-moz-selection,
+.cmd div::-moz-selection,
+.cmd > span::-moz-selection,
+.cmd .prompt span::-moz-selection {
+  background-color: #aaa;
+  color: #000;
+}
+.terminal h1::selection,
+.terminal h2::selection,
+.terminal h3::selection,
+.terminal h4::selection,
+.terminal h5::selection,
+.terminal h6::selection,
+.terminal pre::selection,
+.terminal td::selection,
+.terminal .terminal-output div div::selection,
+.terminal .terminal-output div div a::selection,
+.terminal .terminal-output div span::selection,
+.cmd div::selection,
+.cmd > span::selection,
+.cmd .prompt span::selection {
+  background-color: #aaa;
+  color: #000;
+}
+.terminal .terminal-output div.error,
+.terminal .terminal-output div.error div {
+  color: red;
+}
+.tilda {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1100;
+}
+.clear {
+  clear: both;
+}
+.terminal a {
+  color: #0F60FF;
+}
+.terminal a:hover {
+  color: red;
+}
+#main-wrapper {
+  height: auto;
+  display: block;
+  width: 101.04166667%;
+  margin: 0 -0.52083333%;
+  *zoom: 1;
+}
+#main-wrapper:before,
+#main-wrapper:after {
+  content: "";
+  display: table;
+}
+#main-wrapper:after {
+  clear: both;
+}
+#main-board {
   display: inline;
   float: left;
   width: 98.95833333%;
   margin: 0 0.52083333%;
-  margin-top: 10px;
+  color: rgba(236, 240, 241, 0.9);
+  padding: 10px;
   background: rgba(17, 17, 17, 0.5);
   border-top: rgba(52, 73, 94, 0.9) 1px solid;
   border-bottom: rgba(52, 73, 94, 0.9) 1px solid;
 }
 #main-board .text {
-  color: rgba(236, 240, 241, 0.9);
-  padding: 10px;
+  padding: 10px 0;
   text-align: center;
   text-transform: uppercase;
   font-size: 1.5em;
@@ -116,19 +429,35 @@ body {
 #main-board .square.s4 {
   background-color: rgba(236, 240, 241, 0.9);
 }
+#greetings-wrapper {
+  height: auto;
+  display: block;
+  width: 101.04166667%;
+  margin: 0 -0.52083333%;
+  *zoom: 1;
+}
+#greetings-wrapper:before,
+#greetings-wrapper:after {
+  content: "";
+  display: table;
+}
+#greetings-wrapper:after {
+  clear: both;
+}
 #greetings-board {
   display: inline;
   float: left;
   width: 98.95833333%;
   margin: 0 0.52083333%;
-  height: auto;
+  padding: 10px;
+  color: rgba(236, 240, 241, 0.9);
   background: rgba(17, 17, 17, 0.5);
   border-bottom: rgba(52, 73, 94, 0.9) 1px solid;
 }
 #greetings-board p {
-  padding: 10px;
   text-transform: uppercase;
   letter-spacing: .3em;
+  padding: 10px 0;
   font-family: Roboto Light, Verdana, Tahoma, Arial, Helvetica, sans-serif !important;
 }
 #greetings-board p.greetings-helloworld {
@@ -165,18 +494,34 @@ body {
 #greetings-board p.greetings-date .date-year {
   color: rgba(127, 140, 141, 0.9);
 }
+#weather-wrapper {
+  height: auto;
+  margin-top: 10px;
+  display: block;
+  width: 101.04166667%;
+  margin: 0 -0.52083333%;
+  *zoom: 1;
+}
+#weather-wrapper:before,
+#weather-wrapper:after {
+  content: "";
+  display: table;
+}
+#weather-wrapper:after {
+  clear: both;
+}
 #weather-board {
   display: inline;
   float: left;
   width: 98.95833333%;
   margin: 0 0.52083333%;
-  color: #fff;
-  height: auto;
+  padding: 10px;
+  color: rgba(236, 240, 241, 0.9);
   background: rgba(17, 17, 17, 0.5);
   border-bottom: rgba(52, 73, 94, 0.9) 1px solid;
 }
 #weather-board p {
-  padding: 10px;
+  padding: 10px 0;
   text-transform: uppercase;
   letter-spacing: .3em;
 }
@@ -345,295 +690,27 @@ body {
 #weather-board i.icon-47:before {
   content: "S";
 }
-section.left-pannel {
-  display: inline;
-  float: left;
-  width: 23.95833333%;
-  margin: 0 0.52083333%;
+#terminal-wrapper {
   height: auto;
-}
-section.mid-pannel {
-  display: inline;
-  float: left;
-  width: 48.95833333%;
-  margin: 0 0.52083333%;
-  height: auto;
-}
-section.right-pannel {
-  display: inline;
-  float: left;
-  width: 23.95833333%;
-  margin: 0 0.52083333%;
-  height: auto;
-}
-.terminal .terminal-output .format,
-.cmd .format,
-.cmd .prompt,
-.cmd .prompt div,
-.terminal .terminal-output div div {
-  display: inline-block;
-}
-.cmd .mask,
-.cmd .clipboard {
-  position: absolute;
   display: block;
-  bottom: 0;
-  height: 16px;
-  left: -10px;
+  width: 101.04166667%;
+  margin: 0 -0.52083333%;
+  *zoom: 1;
 }
-.terminal h1,
-.terminal h2,
-.terminal h3,
-.terminal h4,
-.terminal h5,
-.terminal h6,
-.terminal pre,
-.cmd {
-  margin: 0;
+#terminal-wrapper:before,
+#terminal-wrapper:after {
+  content: "";
+  display: table;
 }
-.terminal h1,
-.terminal h2,
-.terminal h3,
-.terminal h4,
-.terminal h5,
-.terminal h6 {
-  line-height: 1.2em;
-}
-.wrap {
-  word-wrap: break-word;
-  overflow: initial;
-}
-.cmd .clipboard {
-  /* this seems to work after all on Android */
-  left: -99999px;
-  clip: rect(1px, 1px, 1px, 1px);
-  /* on desktop textarea appear when paste */
-  /*
-    opacity: 0.01;
-    filter: alpha(opacity = 0.01);
-    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0.01);
-    */
-  width: 10px;
-  /* textarea need to have width or it will not work on Android */
-  height: 10px;
-  padding: 0;
-  resize: none;
-  border: none;
-  z-index: 0;
-  overflow: hidden;
-  outline: none;
-}
-.terminal .error {
-  color: #e74c3c;
-}
-.terminal {
-  position: relative;
-  overflow: hidden;
-}
-.cmd {
-  padding: 0;
-  height: 1.3em;
-  position: relative;
-  /*margin-top: 3px; */
-}
-.terminal .inverted,
-.cmd .inverted,
-.cmd .cursor.blink {
-  background-color: transparent;
-  color: transparent;
-}
-.cmd .cursor.blink {
-  -webkit-animation: terminal-blink 1s infinite steps(1, start);
-  animation: terminal-blink 1s infinite steps(1, start);
-}
-@-webkit-keyframes terminal-blink {
-  0%,
-  100% {
-    background-color: transparent;
-    color: #aaa;
-  }
-  50% {
-    background-color: #bbb;
-    /* not #aaa because it's seems there is Google Chrome bug */
-    color: transparent;
-  }
-}
-@keyframes terminal-blink {
-  0%,
-  100% {
-    background-color: transparent;
-    color: #aaa;
-  }
-  50% {
-    background-color: #bbb;
-    /* not #aaa because it's seems there is Google Chrome bug */
-    color: transparent;
-  }
-}
-.terminal .terminal-output div div,
-.cmd .prompt {
-  display: block;
-  line-height: 14px;
-  height: auto;
-}
-.cmd .prompt {
-  float: left;
-}
-.terminal,
-.cmd {
-  font-family: Roboto Light, Verdana, Tahoma, Arial, Helvetica, sans-serif !important;
-  /*font-family: FreeMono, monospace; this don't work on Android */
-  color: rgba(236, 240, 241, 0.9);
-  background-color: transparent;
-  font-size: 14px;
-  line-height: 16px;
-}
-.terminal-output > div {
-  /*padding-top: 3px;*/
-  min-height: 14px;
-}
-.terminal .terminal-output div span {
-  display: inline-block;
-}
-.cmd span {
-  float: left;
-  /*display: inline-block; */
-}
-/* fix double style of selecting text in terminal */
-.terminal-output span,
-.terminal-output a,
-.cmd div,
-.cmd span,
-.terminal td,
-.terminal pre,
-.terminal h1,
-.terminal h2,
-.terminal h3,
-.terminal h4,
-.terminal h5,
-.terminal h6 {
-  -webkit-touch-callout: initial;
-  -webkit-user-select: initial;
-  -khtml-user-select: initial;
-  -moz-user-select: initial;
-  -ms-user-select: initial;
-  user-select: initial;
-}
-.terminal,
-.terminal-output,
-.terminal-output div {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-/* firefox hack */
-@-moz-document url-prefix() {
-  .terminal,
-  .terminal-output,
-  .terminal-output div {
-    -webkit-touch-callout: initial;
-    -webkit-user-select: initial;
-    -khtml-user-select: initial;
-    -moz-user-select: initial;
-    -ms-user-select: initial;
-    user-select: initial;
-  }
-}
-.terminal table {
-  border-collapse: collapse;
-}
-.terminal td {
-  border: 1px solid #aaa;
-}
-.terminal h1::-moz-selection,
-.terminal h2::-moz-selection,
-.terminal h3::-moz-selection,
-.terminal h4::-moz-selection,
-.terminal h5::-moz-selection,
-.terminal h6::-moz-selection,
-.terminal pre::-moz-selection,
-.terminal td::-moz-selection,
-.terminal .terminal-output div div::-moz-selection,
-.terminal .terminal-output div span::-moz-selection,
-.terminal .terminal-output div div a::-moz-selection,
-.cmd div::-moz-selection,
-.cmd > span::-moz-selection,
-.cmd .prompt span::-moz-selection {
-  background-color: #aaa;
-  color: #000;
-}
-/* this don't work in Chrome
-.terminal tr td::-moz-selection {
-    border-color: #000;
-}
-.terminal tr td::selection {
-    border-color: #000;
-}
-*/
-.terminal h1::-moz-selection,
-.terminal h2::-moz-selection,
-.terminal h3::-moz-selection,
-.terminal h4::-moz-selection,
-.terminal h5::-moz-selection,
-.terminal h6::-moz-selection,
-.terminal pre::-moz-selection,
-.terminal td::-moz-selection,
-.terminal .terminal-output div div::-moz-selection,
-.terminal .terminal-output div div a::-moz-selection,
-.terminal .terminal-output div span::-moz-selection,
-.cmd div::-moz-selection,
-.cmd > span::-moz-selection,
-.cmd .prompt span::-moz-selection {
-  background-color: #aaa;
-  color: #000;
-}
-.terminal h1::selection,
-.terminal h2::selection,
-.terminal h3::selection,
-.terminal h4::selection,
-.terminal h5::selection,
-.terminal h6::selection,
-.terminal pre::selection,
-.terminal td::selection,
-.terminal .terminal-output div div::selection,
-.terminal .terminal-output div div a::selection,
-.terminal .terminal-output div span::selection,
-.cmd div::selection,
-.cmd > span::selection,
-.cmd .prompt span::selection {
-  background-color: #aaa;
-  color: #000;
-}
-.terminal .terminal-output div.error,
-.terminal .terminal-output div.error div {
-  color: red;
-}
-.tilda {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1100;
-}
-.clear {
+#terminal-wrapper:after {
   clear: both;
 }
-.terminal a {
-  color: #0F60FF;
-}
-.terminal a:hover {
-  color: red;
-}
 #terminal-board {
-  height: auto;
   display: inline;
   float: left;
   width: 98.95833333%;
   margin: 0 0.52083333%;
-  margin-top: 10px;
+  color: rgba(236, 240, 241, 0.9);
   background: rgba(17, 17, 17, 0.5);
   border-top: rgba(52, 73, 94, 0.9) 1px solid;
   border-bottom: rgba(52, 73, 94, 0.9) 1px solid;
@@ -672,47 +749,115 @@ section.right-pannel {
 #terminal-board #tabs span.active {
   color: rgba(236, 240, 241, 0.9);
 }
-.informations.cff {
+#informations-wrapper {
+  height: auto;
+  display: block;
+  width: 101.04166667%;
+  margin: 0 -0.52083333%;
+  *zoom: 1;
+  margin-top: 10px;
+}
+#informations-wrapper:before,
+#informations-wrapper:after {
+  content: "";
+  display: table;
+}
+#informations-wrapper:after {
+  clear: both;
+}
+#informations-board .informations {
   display: inline;
   float: left;
   width: 98.95833333%;
   margin: 0 0.52083333%;
-  margin-top: 10px;
-  height: auto;
-  background: rgba(17, 17, 17, 0.5);
-  border-top: rgba(52, 73, 94, 0.9) 1px solid;
-  border-bottom: rgba(52, 73, 94, 0.9) 1px solid;
   color: rgba(236, 240, 241, 0.9);
+  padding: 10px;
+  background: rgba(17, 17, 17, 0.5);
+  border-bottom: rgba(52, 73, 94, 0.9) 1px solid;
 }
-.informations div.travels {
+#informations-board .informations:first-child {
+  border-top: rgba(52, 73, 94, 0.9) 1px solid;
+}
+#informations-board .informations.cff .travels {
   padding: 10px;
 }
-.informations div.travels p.title {
+#informations-board .informations.cff .travels p.title {
   font-size: 1.2em;
   text-transform: uppercase;
   letter-spacing: .3em;
 }
-.informations div.travels .travel {
+#informations-board .informations.cff .travels .travel {
   margin: 10px 0;
 }
-.informations div.travels .travel div.sections p.title {
+#informations-board .informations.cff .travels .travel div.sections p.title {
   margin-top: 5px;
   font-size: 0.9em;
   text-transform: uppercase;
   letter-spacing: .3em;
 }
-.informations div.travels .travel div.title {
+#informations-board .informations.cff .travels .travel div.title {
   text-transform: uppercase;
   letter-spacing: .3em;
   color: #bdc0c1;
 }
-.informations div.travels .travel div.time,
-.informations div.travels .travel div.journey,
-.informations div.travels .travel div.platform,
-.informations div.travels .travel div.location {
+#informations-board .informations.cff .travels .travel div.time,
+#informations-board .informations.cff .travels .travel div.journey,
+#informations-board .informations.cff .travels .travel div.platform,
+#informations-board .informations.cff .travels .travel div.location {
   display: inline;
   float: left;
   width: 23.95833333%;
   margin: 0 0.52083333%;
   margin: 10px 0;
+}
+#favorites-wrapper {
+  height: auto;
+  display: block;
+  width: 101.04166667%;
+  margin: 0 -0.52083333%;
+  *zoom: 1;
+}
+#favorites-wrapper:before,
+#favorites-wrapper:after {
+  content: "";
+  display: table;
+}
+#favorites-wrapper:after {
+  clear: both;
+}
+#favorites-board {
+  display: inline;
+  float: left;
+  width: 98.95833333%;
+  margin: 0 0.52083333%;
+  color: rgba(236, 240, 241, 0.9);
+  padding: 10px;
+  background: rgba(17, 17, 17, 0.5);
+  border-top: rgba(52, 73, 94, 0.9) 1px solid;
+  border-bottom: rgba(52, 73, 94, 0.9) 1px solid;
+}
+#favorites-board .text {
+  padding: 10px 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  letter-spacing: .3em;
+  font-family: Roboto Light, Verdana, Tahoma, Arial, Helvetica, sans-serif !important;
+}
+#favorites-board .favorites {
+  *zoom: 1;
+}
+#favorites-board .favorites:before,
+#favorites-board .favorites:after {
+  content: "";
+  display: table;
+}
+#favorites-board .favorites:after {
+  clear: both;
+}
+#favorites-board .favorites .favorite {
+  display: inline;
+  float: left;
+  width: 23.95833333%;
+  margin: 0 0.52083333%;
 }

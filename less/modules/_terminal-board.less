@@ -1,0 +1,41 @@
+#terminal-wrapper {
+  height: auto;
+  .row();
+}
+#terminal-board {
+  .column(24);
+  color: @color-1;
+  //padding: 10px;
+  background: @color-bg;
+  border-top: @color-3 1px solid;
+  border-bottom: @color-3 1px solid;
+
+  .terminals {
+    .column(24);
+    padding: 10px;
+  }
+  .terminal-term {
+    .terminal {height: 200px;}
+    visibility: hidden;
+    display: none;
+    &.active {
+      visibility: visible;
+      display: block;
+    }
+  }
+  #tabs {
+      .column(24);
+
+      border-bottom: @color-3 1px solid;
+
+      span {
+        display: inline-block;
+        padding: 5px 10px;
+        color: @color-2;
+        cursor: pointer;
+        &.active {
+          color: @color-1;
+        }
+      }
+    }
+ }

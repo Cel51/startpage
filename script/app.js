@@ -127,14 +127,14 @@ function initTimeLines() {
       autoAlpha: 0,
       marginTop: "-20"
     })
-    // .from($("#terminal-board"), .2, {
-    //   autoAlpha: 0,
-    //   marginTop: "-20"
-    // })
-    // .from($("#tabs"), .2, {
-    //   autoAlpha: 0,
-    //   marginTop: "-20"
-    // })
+    .from($("#terminal-board"), .2, {
+      autoAlpha: 0,
+      marginTop: "-20"
+    })
+    .from($("#tabs"), .2, {
+      autoAlpha: 0,
+      marginTop: "-20"
+    })
     .timeScale(1.2)
     //.timeScale(5)
     .pause();

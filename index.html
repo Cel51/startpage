@@ -20,57 +20,83 @@
 			<canvas id="header"></canvas>
 		</section>
 		<section class="left-pannel">
-			<div id="main-board">
-
-				<div class="text">
-					Homepage
-				</div>
-				<div class="image">
-					<img src="images/logo-3.png" alt="">
-				</div>
-				<div class="squares">
-					<div class="square s1"></div>
-					<div class="square s2"></div>
-					<div class="square s3"></div>
-					<div class="square s4"></div>
-				</div>
-			</div>
-			<div id="greetings-board">
-				<p class="greetings-helloworld">
-					<span class="greetings-title"></span><br>
-					<span class="greetings-name"></span>
-				</p>
-				<p class="greetings-time">
-					<span class="time-title">Time</span><br>
-					<span class="time-hours"></span> :
-					<span class="time-minutes"></span> :
-					<span class="time-seconds"></span><br>
-				</p>
-				<p class="greetings-date">
-					<span class="date-title">Date</span><br>
-					<span class="date-day"></span> .
-					<span class="date-month"></span> .
-					<span class="date-year"></span>
-				</p>
-			</div>
-			<div id="weather-board">
-			</div>
-		</section>
-		<section class="mid-pannel">
-			&nbsp;
-		</section>
-		<section class="right-pannel">
-			<div id="terminal-board">
-				<div id="tabs">
-					<span id="main" class="t-tab active">Main</span>
-				</div>
-				<div class="terminals">
-					<div class="terminal-term active main">
-						<div id="main"></div>
+			<div id="main-wrapper">
+				<div id="main-board">
+					<div class="text">
+						Homepage
+					</div>
+					<div class="image">
+						<img src="images/logo-3.png" alt="">
+					</div>
+					<div class="squares">
+						<div class="square s1"></div>
+						<div class="square s2"></div>
+						<div class="square s3"></div>
+						<div class="square s4"></div>
 					</div>
 				</div>
 			</div>
-			<div id="favorites-pannel"></div>
+			<div id="greetings-wrapper">
+				<div id="greetings-board">
+					<p class="greetings-helloworld">
+						<span class="greetings-title"></span><br>
+						<span class="greetings-name"></span>
+					</p>
+					<p class="greetings-time">
+						<span class="time-title">Time</span><br>
+						<span class="time-hours"></span> :
+						<span class="time-minutes"></span> :
+						<span class="time-seconds"></span><br>
+					</p>
+					<p class="greetings-date">
+						<span class="date-title">Date</span><br>
+						<span class="date-day"></span> .
+						<span class="date-month"></span> .
+						<span class="date-year"></span>
+					</p>
+				</div>
+			</div>
+			<div id="weather-wrapper">
+				<div id="weather-board">
+				</div>
+			</div>
+		</section>
+		<section class="mid-pannel">
+			<div id="favorites-wrapper">
+				<div id="favorites-board">
+					<p class="text">Bookmarks</p>
+					<div class="favorites">
+						<div class="favorite">lorem</div>
+						<div class="favorite">lorem</div>
+						<div class="favorite">lorem</div>
+						<div class="favorite">lorem</div>
+						<div class="favorite">lorem</div>
+						<div class="favorite">lorem</div>
+						<div class="favorite">lorem</div>
+						<div class="favorite">lorem</div>
+						<div class="favorite">lorem</div>
+						<div class="favorite">lorem</div>
+					</div>
+				</div>
+			</div>
+			<div id="informations-wrapper">
+				<div id="informations-board">
+				</div>
+			</div>
+		</section>
+		<section class="right-pannel">
+			<div id="terminal-wrapper">
+				<div id="terminal-board">
+					<div id="tabs">
+						<span id="main" class="t-tab active">Main</span>
+					</div>
+					<div class="terminals">
+						<div class="terminal-term active main">
+							<div id="main"></div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</section>
 	</body>
 	<script src="script/background.js"></script>

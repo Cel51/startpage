@@ -97,7 +97,7 @@ function createCFFdata(data) {
     '</div>'+
   '</div>';
 
-  $(".mid-pannel").append(element);
+  $("#informations-board").prepend(element);
 }
 function convertDate(date) {
   var ddate = new Date(date);
