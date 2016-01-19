@@ -897,7 +897,7 @@ section.right-pannel {
   font-family: Roboto Light, Verdana, Tahoma, Arial, Helvetica, sans-serif !important;
 }
 #search-board input {
-  background-color: #090909;
+  background-color: rgba(150, 150, 150, 0.4);
   color: rgba(236, 240, 241, 0.9);
   border: 1px solid rgba(52, 73, 94, 0.9);
   width: 100%;
