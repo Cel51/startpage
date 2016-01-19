@@ -12,7 +12,7 @@ function init() {
   loadFavorites();
   sizeUpdate();
 
-  $("body").backstretch("images/back.jpg");
+  $("body").backstretch("images/back.png");
 
   tlLoading.play();
   setTimeout(function() {
