@@ -14,6 +14,9 @@ function initCFF() {
         });
       }
     },
+    "cffclear": function() {
+      $(".informations.cff").remove();
+    },
     "main": function() {
           showTab("main");
           mainT.focus(true);

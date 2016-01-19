@@ -13,14 +13,13 @@ function init() {
   sizeUpdate();
 
   $("body").backstretch("images/back.jpg");
+  $(".mid-pannel").mCustomScrollbar();
 
-  tlDisplay.play();
-
-  //tlLoading.play();
+  tlLoading.play();
   setTimeout(function() {
-    //tlLoading.pause();
-
-  }, 500);
+    tlLoading.pause();
+    tlDisplay.play();
+  }, 1210);
 }
 
 function initTerminal() {
@@ -104,82 +103,63 @@ function initWeather() {
 }
 
 function initTimeLines() {
-  // tlLoading = new TimelineMax({
-  //     repeat: -1
-  //   })
-  //   .from($(".s1"), .4, {
-  //     rotation: "-=180"
-  //   }, "#1")
-  //   .from($(".s2"), .5, {
-  //     rotation: "-=180"
-  //   }, "#1")
-  //   .from($(".s3"), .6, {
-  //     rotation: "-=180"
-  //   }, "#1")
-  //   .from($(".s4"), .7, {
-  //     rotation: "-=180"
-  //   }, "#1")
-  //   .pause();
+  tlLoading = new TimelineMax({
+      repeat: -1
+    })
+    .from($(".s1"), .4, {
+      rotation: "-=180"
+    }, "#1")
+    .from($(".s2"), .5, {
+      rotation: "-=180"
+    }, "#1")
+    .from($(".s3"), .6, {
+      rotation: "-=180"
+    }, "#1")
+    .from($(".s4"), .7, {
+      rotation: "-=180"
+    }, "#1")
+    .pause();
 
   tlDisplay = new TimelineMax()
-    // .from($(".left-pannel"), .2, {
-    //   autoAlpha: 0,
-    //   marginTop: "-20"
-    // },"#1")
-    // .from($(".mid-pannel"), .2, {
-    //   autoAlpha: 0,
-    //   marginTop: "-20"
-    // },"#1")
-    // .from($(".right-pannel"), .2, {
-    //   autoAlpha: 0,
-    //   marginTop: "-20"
-    // },"#1")
-    // .to($(".squares"), .2, {
-    //   autoAlpha: 0
-    // })
-    // .to($(".squares"), .45, {
-    //   height: 0
-    // }, "#1")
-    // .from($(".image"), .5, {
-    //   height: 0
-    // }, "#1")
-    // .from($(".image"), .2, {
-    //   autoAlpha: 0,
-    //   marginTop: "-20"
-    // })
-    // .from($("#main-board"), .2, {
-    //   autoAlpha: 0,
-    //   marginTop: "-20"
-    // })
-    // .from($("#greetings-board"), .2, {
-    //   autoAlpha: 0,
-    //   marginTop: "-20"
-    // })
-    // .from($("#weather-board"), .2, {
-    //   autoAlpha: 0,
-    //   marginTop: "-20"
-    // })
-    // .from($("#search-board"), .2, {
-    //   autoAlpha: 0,
-    //   marginTop: "-20"
-    // })
-    // .from($("#favorites-board"), .2, {
-    //   autoAlpha: 0,
-    //   marginTop: "-20"
-    // })
-    // .from($("#tabs"), .2, {
-    //   autoAlpha: 0,
-    //   marginTop: "-20"
-    // })
-    // .from($("#terminal-board"), .2, {
-    //   autoAlpha: 0,
-    //   marginTop: "-20"
-    // })
-    //
-    //
-    // .timeScale(2)
-    // //.timeScale(5)
-    // .pause();
+    .to($(".squares"), .2, {
+      autoAlpha: 0
+    })
+    .to($(".squares"), .45, {
+      height: 0
+    }, "#1")
+    .from($(".image"), .5, {
+      height: 0
+    }, "#1")
+    .from($(".image"), .2, {
+      autoAlpha: 0,
+      marginTop: "-20"
+    })
+    .from($("#greetings-board"), .2, {
+      autoAlpha: 0,
+      marginTop: "-20"
+    })
+    .from($("#weather-board"), .2, {
+      autoAlpha: 0,
+      marginTop: "-20"
+    })
+    .from($("#search-board"), .2, {
+      autoAlpha: 0,
+      marginTop: "-20"
+    })
+    .from($("#favorites-board"), .2, {
+      autoAlpha: 0,
+      marginTop: "-20"
+    })
+    .from($("#tabs"), .2, {
+      autoAlpha: 0,
+      marginTop: "-20"
+    })
+    .from($("#terminal-board"), .2, {
+      autoAlpha: 0,
+      marginTop: "-20"
+    })
+    .timeScale(2)
+    .pause();
 }
 
 function initClock() {
@@ -219,6 +199,10 @@ function initClock() {
 }
 
 function sizeUpdate() {
+
+  $(".mid-pannel, .left-pannel, .right-pannel").height(document.body.clientHeight-20);
+
+
   var mxHeight = 0;
   $("#favorites-board .favorite").each(function(index, elem){
      if(mxHeight <= $(elem).height())

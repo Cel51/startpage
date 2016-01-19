@@ -80,6 +80,7 @@ section.mid-pannel {
   width: 48.95833333%;
   margin: 0 0.52083333%;
   margin-top: 10px;
+  margin-bottom: 10px;
   min-height: 1px;
   height: auto;
 }
@@ -400,7 +401,7 @@ section.right-pannel {
   clear: both;
 }
 #main-board .squares {
-  margin: 5px 0 15px;
+  margin: 15px 0 15px;
   height: 70px;
   position: relative;
 }
