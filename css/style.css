@@ -49,8 +49,6 @@ body {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  background-attachment: fixed;
-  background-image: url(../images/back.jpg);
 }
 body #large-header {
   position: absolute;
@@ -160,7 +158,7 @@ section.right-pannel {
 .cmd {
   padding: 0;
   height: 1.3em;
-  position: relative;
+  position: relative
   /*margin-top: 3px; */
 }
 .terminal .inverted,
@@ -171,9 +169,22 @@ section.right-pannel {
 }
 .cmd .cursor.blink {
   -webkit-animation: terminal-blink 1s infinite steps(1, start);
+  -ms-animation: terminal-blink 1s infinite steps(1, start);
   animation: terminal-blink 1s infinite steps(1, start);
 }
 @-webkit-keyframes terminal-blink {
+  0%,
+  100% {
+    background-color: transparent;
+    color: #aaa;
+  }
+  50% {
+    background-color: #bbb;
+    /* not #aaa because it's seems there is Google Chrome bug */
+    color: transparent;
+  }
+}
+@-ms-keyframes terminal-blink {
   0%,
   100% {
     background-color: transparent;
@@ -223,7 +234,7 @@ section.right-pannel {
   display: inline-block;
 }
 .cmd span {
-  float: left;
+  float: left
   /*display: inline-block; */
 }
 /* fix double style of selecting text in terminal */

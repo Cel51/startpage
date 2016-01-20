@@ -14,8 +14,13 @@ function initCFF() {
         });
       }
     },
-    "cffclear": function() {
-      $(".informations.cff").remove();
+    "reset": function() {
+      new TimelineMax({onComplete: function() {$(".informations.cff").remove();}})
+      .to($(".informations.cff"), .2 ,{
+        height: 0,
+        autoAlpha: 0
+      })
+      .timeScale(.5)
     },
     "main": function() {
           showTab("main");
@@ -101,6 +106,14 @@ function createCFFdata(data) {
   '</div>';
 
   $("#informations-board").prepend(element);
+  element = $(".informations.cff").first();
+  console.log(element);
+  var tlInformation = new TimelineMax()
+  .from($(element), .2, {
+    autoAlpha: 0,
+    marginLeft: "-20"
+  })
+  .timeScale(0.5)
 }
 function convertDate(date) {
   var ddate = new Date(date);

@@ -2,11 +2,11 @@ var scPlayer = null;
 var scMe = null;
 
 function initSoundcloud() {
-  scPlayer = new SoundCloudAudio('be212a58528168962a39c64052c1d88e');
+  scPlayer = new SoundCloudAudio(clientid);
 
   SC.initialize({
-    client_id: 'be212a58528168962a39c64052c1d88e',
-    redirect_uri: 'http://localhost:8001/'
+    client_id: clientid,
+    redirect_uri: redirecturi
   });
   SC.connect(function() {
     SC.get('/me', function(me) {

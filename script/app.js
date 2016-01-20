@@ -1,19 +1,21 @@
 var tlLoading, tlDisplay;
 var username = "Cel51"
-var wLocation = ["784302", "784201", "783382"];
 var cffT, mainT, scT;
 
 function init() {
+
+  $("body").backstretch("images/"+images[Math.round(Math.random()*images.length)],{fade: 300});
+  $(".left-pannel, .mid-pannel, .right-pannel").mCustomScrollbar({
+    scrollInertia: 100
+  });
+
   initGreetings();
   initWeather();
   initTimeLines();
   initTerminal();
+  initSearch();
   initFavorites();
-
-  sizeUpdate();
-
-  $("body").backstretch("images/back.jpg");
-  $(".mid-pannel").mCustomScrollbar();
+  initSize();
 
   tlLoading.play();
   setTimeout(function() {
@@ -75,14 +77,14 @@ function initGreetings() {
 }
 
 function initWeather() {
-  wLocation.forEach(function(i, e) {
+  locations.forEach(function(i, e) {
     $.simpleWeather({
       zipcode: '',
-      woeid: wLocation[e],
+      woeid: locations[e],
       location: '',
       unit: 'c',
       success: function(weather) {
-        var weatherObj = '<p class="weather" id="' + wLocation[e] + '">' +
+        var weatherObj = '<p class="weather" id="' + locations[e] + '">' +
           '<span class="weather-location"></span><br>' +
           '<span class="weather-icon"></span>' +
           '<span class="weather-temperature"></span> <br>' +
@@ -90,13 +92,13 @@ function initWeather() {
           '</p>';
 
         $("#weather-board").append(weatherObj);
-        $("#" + wLocation[e] + " .weather-location").html(weather.city + ", " + weather.region);
-        $("#" + wLocation[e] + " .weather-icon").html('<i class="icon-' + weather.code + '"></i>');
-        $("#" + wLocation[e] + " .weather-temperature").html(weather.temp + '&deg;' + weather.units.temp);
-        $("#" + wLocation[e] + " .weather-description").html(weather.currently);
+        $("#" + locations[e] + " .weather-location").html(weather.city + ", " + weather.region);
+        $("#" + locations[e] + " .weather-icon").html('<i class="icon-' + weather.code + '"></i>');
+        $("#" + locations[e] + " .weather-temperature").html(weather.temp + '&deg;' + weather.units.temp);
+        $("#" + locations[e] + " .weather-description").html(weather.currently);
       },
       error: function(error) {
-        $("#" + wLocation[e] + "").html('<p>' + error + '</p>');
+        $("#" + locations[e] + "").html('<p>' + error + '</p>');
       }
     });
   });
@@ -124,41 +126,41 @@ function initTimeLines() {
     .to($(".squares"), .2, {
       autoAlpha: 0
     })
-    .to($(".squares"), .45, {
+    .to($(".squares"), .05, {
       height: 0
     }, "#1")
-    .from($(".image"), .5, {
+    .from($(".image"), .2, {
       height: 0
     }, "#1")
     .from($(".image"), .2, {
       autoAlpha: 0,
-      marginTop: "-20"
+      marginLeft: "-20"
     })
     .from($("#greetings-board"), .2, {
       autoAlpha: 0,
-      marginTop: "-20"
+      marginLeft: "-20"
     })
     .from($("#weather-board"), .2, {
       autoAlpha: 0,
-      marginTop: "-20"
+      marginLeft: "-20"
     })
     .from($("#search-board"), .2, {
       autoAlpha: 0,
-      marginTop: "-20"
+      marginLeft: "-20"
     })
     .from($("#favorites-board"), .2, {
       autoAlpha: 0,
-      marginTop: "-20"
-    })
-    .from($("#tabs"), .2, {
-      autoAlpha: 0,
-      marginTop: "-20"
+      marginLeft: "-20"
     })
     .from($("#terminal-board"), .2, {
       autoAlpha: 0,
-      marginTop: "-20"
-    })
-    .timeScale(2)
+      marginLeft: "-20"
+    }, "#2")
+    .from($("#tabs"), .2, {
+      autoAlpha: 0,
+      marginLeft: "-20"
+    }, "#2")
+    .timeScale(1.2)
     .pause();
 }
 
@@ -175,6 +177,8 @@ function initClock() {
     dd = '0' + dd
   if (mm < 10)
     mm = '0' + mm
+  if (h < 10)
+    h = '0' + h
   if (m < 10)
     m = '0' + m
   if (s < 10)
@@ -198,7 +202,7 @@ function initClock() {
   var t = setTimeout(initClock, 500);
 }
 
-function sizeUpdate() {
+function initSize() {
 
   $(".mid-pannel, .left-pannel, .right-pannel").height(document.body.clientHeight-20);
 
@@ -233,22 +237,13 @@ function showTab(tab) {
 
 $(document).ready(function() {
 
-  SC.initialize({
-    client_id: 'be212a58528168962a39c64052c1d88e',
-    redirect_uri: 'http://localhost:8001/'
-  });
-
-  $(".t-tab").click(function() {
-    showTab($(this).attr('id'));
-  })
-
   init();
 
   setTimeout(function() {
-    sizeUpdate();
+    initSize();
   }, 2500)
 });
 
 $(window).resize(function() {
-  sizeUpdate();
+  initSize();
 })
