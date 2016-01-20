@@ -4,7 +4,8 @@ var cffT, mainT, scT;
 
 function init() {
 
-  $("body").backstretch("images/"+images[Math.round(Math.random()*images.length-1)],{fade: 300}, function() {console.log("onch");});
+  $("body").backstretch("images/"+images[Math.round(Math.random()*(images.length-1))],{fade: 300});
+
   $(".left-pannel, .mid-pannel, .right-pannel").mCustomScrollbar({
     scrollInertia: 100
   });
@@ -19,10 +20,13 @@ function init() {
 
   tlLoading.play();
 
-  setTimeout(function() {
+  $("img").on('load',function() {
     tlLoading.pause();
     tlDisplay.play();
-  }, 1210);
+  })
+  // setTimeout(function() {
+  //
+  // }, 1210);
 }
 function initTerminal() {
   mainT = $('.terminal-term.main #main').terminal({
