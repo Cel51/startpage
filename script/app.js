@@ -4,7 +4,7 @@ var cffT, mainT, scT;
 
 function init() {
 
-  $("body").backstretch("images/"+images[Math.round(Math.random()*images.length)],{fade: 300});
+  $("body").backstretch("images/"+images[Math.round(Math.random()*images.length-1)],{fade: 300}, function() {console.log("onch");});
   $(".left-pannel, .mid-pannel, .right-pannel").mCustomScrollbar({
     scrollInertia: 100
   });
@@ -18,12 +18,12 @@ function init() {
   initSize();
 
   tlLoading.play();
+
   setTimeout(function() {
     tlLoading.pause();
     tlDisplay.play();
   }, 1210);
 }
-
 function initTerminal() {
   mainT = $('.terminal-term.main #main').terminal({
     "google": function(arg1) {
