@@ -26,11 +26,6 @@ function init() {
 }
 function initTerminal() {
   mainT = $('.terminal-term.main #main').terminal({
-    "google": function(arg1) {
-      new $.GoogleSearch().search(arg1, {}, function(data) {
-        console.log(data)
-      });
-    },
     "f": function(arg1) {
       for(var i = 0; i < favorites.length; i++) {
         for(var j = 0; j < favorites[i][1].length; j++) {
@@ -40,6 +35,14 @@ function initTerminal() {
           }
         }
       }
+    },
+    "help": function() {
+      this.echo("\n");
+      this.error("f <shortcut>"); this.echo("open the favorites in a new tab"); this.echo("\n");
+      this.error("main"); this.echo("goto main terminal"); this.echo("\n");
+      this.error("sc"); this.echo("goto soundcloud terminal"); this.echo("\n");
+      this.error("cff"); this.echo("goto cff terminal"); this.echo("\n");
+      this.echo("\n");
     },
     "main": function() {
       showTab("main");

@@ -735,7 +735,7 @@ section.right-pannel {
   display: none;
 }
 #terminal-board .terminal-term .terminal {
-  height: 200px;
+  height: 300px;
 }
 #terminal-board .terminal-term.active {
   visibility: visible;

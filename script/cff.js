@@ -12,6 +12,11 @@ function initCFF() {
         function(data) {
           createCFFdata(data);
         });
+      },
+      "help": function() {
+        this.echo("\n");
+        this.error("connections <from> <to>"); this.echo("display the train informations"); this.echo("\n");
+        this.echo("\n");
       }
     },
     "reset": function() {
@@ -21,6 +26,15 @@ function initCFF() {
         autoAlpha: 0
       })
       .timeScale(.5)
+    },
+    "help": function() {
+      this.echo("\n");
+      this.error("travel"); this.echo("access the travel"); this.echo("\n");
+      this.error("reset"); this.echo("clean the cff informations"); this.echo("\n");
+      this.error("main"); this.echo("goto main terminal"); this.echo("\n");
+      this.error("sc"); this.echo("goto soundcloud terminal"); this.echo("\n");
+      this.error("cff"); this.echo("goto cff terminal"); this.echo("\n");
+      this.echo("\n");
     },
     "main": function() {
           showTab("main");

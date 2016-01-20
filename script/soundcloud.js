@@ -113,12 +113,16 @@ function initSoundcloud() {
     },
     "help" : function() {
       this.echo("\n");
-      this.error("likes :"); this.echo("load your account likes"); this.echo("\n");
-      this.error("tracks :"); this.echo("load your account tracks"); this.echo("\n");
-      this.error("playlist <name of the playlist> :"); this.echo("load one of your playlist"); this.echo("\n");
-      this.error("user <username> :"); this.echo("load the user's tracks"); this.echo("\n");
-      this.error("user <username> likes :"); this.echo("load the user's favorites"); this.echo("\n");
-      this.error("user <username> playlist <name of the playlist> :"); this.echo("load one of the user's playlist");this.echo("\n");
+      this.error("likes"); this.echo("load your account favorites"); this.echo("\n");
+      this.error("tracks"); this.echo("load your account tracks"); this.echo("\n");
+      this.error("playlist <name of the playlist>"); this.echo("load one of your playlist"); this.echo("\n");
+      this.error("user <username>"); this.echo("load the user's tracks"); this.echo("\n");
+      this.error("user <username> likes"); this.echo("load the user's favorites"); this.echo("\n");
+      this.error("user <username> playlist <name of the playlist>"); this.echo("load one of the user's playlist");this.echo("\n");
+      this.echo("\n");
+      this.error("main"); this.echo("goto main terminal"); this.echo("\n");
+      this.error("sc"); this.echo("goto soundcloud terminal"); this.echo("\n");
+      this.error("cff"); this.echo("goto cff terminal"); this.echo("\n");
       this.echo("\n");
       this.echo("to quit the load function press CTRL+D");
       this.echo("\n");
