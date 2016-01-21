@@ -92,6 +92,9 @@ function initSoundcloud() {
               scPlayer.play({playlistIndex: 0})
             else
               scPlayer.next();
+            term.echo("\n");
+            term.error(scPlayer._playlistIndex + "\t\t" + scPlayer._playlist.tracks[scPlayer._playlistIndex].title + " is playing");
+            term.echo("\n");
           });
         });
       } else {
@@ -103,6 +106,9 @@ function initSoundcloud() {
               scPlayer.play({playlistIndex: 0})
             else
               scPlayer.next();
+            term.echo("\n");
+            term.error(scPlayer._playlistIndex + "\t\t" + scPlayer._playlist.tracks[scPlayer._playlistIndex].title + " is playing");
+            term.echo("\n");
           });
         });
       }
