@@ -1,6 +1,9 @@
 var tlLoading, tlDisplay;
 var username = "Cel51"
 var cffT, mainT, scT;
+var scPlayer = null;
+var scMe = null;
+var scCurr = null;
 
 function init() {
 
@@ -40,6 +43,307 @@ function initTerminal() {
         }
       }
     },
+    "cff": {
+      "travel" :function(fromLocation, toLocation, date, time) {
+
+        var term = this;
+
+        if(date==undefined) date = cffDate();
+        if(time==undefined) time = cffTime();
+
+        $.get("http://transport.opendata.ch/v1/connections?from="+fromLocation+"&to="+toLocation+"&date="+date+"&time="+time,
+        function(data) {
+          createCFFdata(data);
+        });
+      },
+      "help": function() {
+        this.echo("\n");
+        this.error("connections <from> <to>"); this.echo("display the train informations"); this.echo("\n");
+        this.echo("\n");
+      },
+      "reset": function() {
+        new TimelineMax({onComplete: function() {$(".informations.cff").remove();}})
+        .to($(".informations.cff"), .2 ,{
+          height: 0,
+          autoAlpha: 0
+        })
+        .timeScale(.5);
+      },
+      "help": function() {
+        this.echo("\n");
+        this.error("travel"); this.echo("access the travel"); this.echo("\n");
+        this.error("reset"); this.echo("clean the cff informations"); this.echo("\n");
+        this.error("main"); this.echo("goto main terminal"); this.echo("\n");
+        this.error("sc"); this.echo("goto soundcloud terminal"); this.echo("\n");
+        this.error("cff"); this.echo("goto cff terminal"); this.echo("\n");
+        this.echo("\n");
+      }
+    },
+    "sc": {
+      "login" : function() {
+        scPlayer = new SoundCloudAudio(clientid);
+
+        SC.initialize({
+          client_id: clientid,
+          redirect_uri: redirecturi
+        });
+        SC.connect(function() {
+          SC.get('/me', function(me) {
+            scMe = me;
+          });
+        });
+      },
+      "load" : {
+        "likes": function() {
+          var term = this;
+
+          scPlayer.resolve('https://soundcloud.com/'+scMe.permalink+'/likes', function (playlist, err) {
+            scPlayer.play({playlistIndex: 0});
+            scPlayer.pause();
+            scPlayer.on('ended', function () {
+              if(scPlayer._playlistIndex == scPlayer._playlist.tracks.length - 1)
+                scPlayer.play({playlistIndex: 0})
+              else
+                scPlayer.next();
+            });
+          });
+
+          term.echo("\n");
+          term.error("Call currentplaylist to see the loaded plalist");
+          term.echo("\n");
+        },
+        "tracks": function() {
+          var term = this;
+
+          scPlayer.resolve('https://soundcloud.com/'+scMe.permalink+'/tracks', function (playlist, err) {
+            scPlayer.play({playlistIndex: 0});
+            scPlayer.pause();
+            scPlayer.on('ended', function () {
+              if(scPlayer._playlistIndex == scPlayer._playlist.tracks.length - 1)
+                scPlayer.play({playlistIndex: 0})
+              else
+                scPlayer.next();
+            });
+          });
+
+          term.echo("\n");
+          term.error("Call currentplaylist to see the loaded plalist");
+          term.echo("\n");
+        },
+        "playlist": function(playlist) {
+          var term = this;
+          scPlayer.resolve('https://soundcloud.com/'+scMe.permalink+'/sets/'+playlist, function (playlist, err) {
+            scPlayer.play({playlistIndex: 0});
+            scPlayer.pause();
+            scPlayer.on('ended', function () {
+              if(scPlayer._playlistIndex == scPlayer._playlist.tracks.length - 1)
+                scPlayer.play({playlistIndex: 0})
+              else
+                scPlayer.next();
+            });
+          });
+
+          term.echo("\n");
+          term.error("Call currentplaylist to see the loaded plalist");
+          term.echo("\n");
+        },
+        "user": function(username, mod, playlist) {
+          var term = this;
+
+          if(mod == 'playlist') {
+            scPlayer.resolve('https://soundcloud.com/'+username+'/sets/'+playlist, function (playlist, err) {
+              scPlayer.play({playlistIndex: 0});
+              scPlayer.pause();
+              scPlayer.on('ended', function () {
+                if(scPlayer._playlistIndex == scPlayer._playlist.tracks.length - 1)
+                  scPlayer.play({playlistIndex: 0})
+                else
+                  scPlayer.next();
+              });
+            });
+          } else if (mod == 'likes') {
+            scPlayer.resolve('https://soundcloud.com/'+username+'/likes', function (playlist, err) {
+              scPlayer.play({playlistIndex: 0});
+              scPlayer.pause();
+              scPlayer.on('ended', function () {
+                if(scPlayer._playlistIndex == scPlayer._playlist.tracks.length - 1)
+                  scPlayer.play({playlistIndex: 0})
+                else
+                  scPlayer.next();
+              });
+            });
+          } else {
+            scPlayer.resolve('https://soundcloud.com/'+username+'/tracks', function (playlist, err) {
+              scPlayer.play({playlistIndex: 0});
+              scPlayer.pause();
+              scPlayer.on('ended', function () {
+                if(scPlayer._playlistIndex == scPlayer._playlist.tracks.length - 1)
+                  scPlayer.play({playlistIndex: 0})
+                else
+                  scPlayer.next();
+              });
+            });
+          }
+
+          term.echo("\n");
+          term.error("Call currentplaylist to see the loaded plalist");
+          term.echo("\n");
+        },
+        "help" : function() {
+          this.echo("\n");
+          this.error("likes"); this.echo("load your account favorites"); this.echo("\n");
+          this.error("tracks"); this.echo("load your account tracks"); this.echo("\n");
+          this.error("playlist <name of the playlist>"); this.echo("load one of your playlist"); this.echo("\n");
+          this.error("user <username>"); this.echo("load the user's tracks"); this.echo("\n");
+          this.error("user <username> likes"); this.echo("load the user's favorites"); this.echo("\n");
+          this.error("user <username> playlist <name of the playlist>"); this.echo("load one of the user's playlist");this.echo("\n");
+          this.echo("\n");
+          this.error("main"); this.echo("goto main terminal"); this.echo("\n");
+          this.error("sc"); this.echo("goto soundcloud terminal"); this.echo("\n");
+          this.error("cff"); this.echo("goto cff terminal"); this.echo("\n");
+          this.echo("\n");
+          this.echo("to quit the load function press CTRL+D");
+          this.echo("\n");
+        }
+      },
+      "currentplaylist": function() {
+        var term = this;
+
+        if(scPlayer._playlist == undefined) {
+          term.echo("\n");
+          term.error("You must load a playlist first !");
+          term.echo("\n");
+        }
+        else {
+          term.echo("\n");
+          $(scPlayer._playlist.tracks).each(function(index, track) {
+            if(scPlayer._playlistIndex == index)
+              term.error(index + "\t\t" + track.title);
+            else
+              term.echo(index + "\t\t" + track.title);
+          });
+          term.echo("\n");
+        }
+      },
+      "currentsong": function() {
+        var term = this;
+
+        if(scPlayer._playlist == undefined) {
+          term.echo("\n");
+          term.error("You must load a playlist first !");
+          term.echo("\n");
+        }
+        else {
+          term.echo("\n");
+          term.error(scPlayer._playlistIndex + "\t\t" + scPlayer._playlist.tracks[scPlayer._playlistIndex].title + " is playing");
+          term.echo("\n");
+        }
+      },
+      "play" : function(arg) {
+        var term = this;
+
+        if(scPlayer._playlist == undefined) {
+          term.echo("\n");
+          term.error("You must load a playlist first !");
+          term.echo("\n");
+        }
+        else {
+          term.echo("\n");
+
+          if(arg != null) {
+            scPlayer.play({playlistIndex: arg});
+            term.error(arg + "\t\t" + scPlayer._playlist.tracks[arg].title + " is playing");
+          }
+          else {
+            scPlayer.play();
+            console.log(scPlayer);
+            term.error(scPlayer._playlistIndex + "\t\t" + scPlayer._playlist.tracks[scPlayer._playlistIndex].title + " is playing");
+          }
+
+          scCurr = scPlayer._playlistIndex;
+          term.echo("\n");
+        }
+      },
+      "pause" : function() {
+        var term = this;
+
+        if(scPlayer._playlist == undefined) {
+          term.echo("\n");
+          term.error("You must load a playlist first !");
+          term.echo("\n");
+        }
+        else {
+          scPlayer.pause();
+          term.echo("\n");
+          term.error(scPlayer._playlistIndex + "\t\t" + scPlayer._playlist.tracks[scPlayer._playlistIndex].title + " is paused");
+          scCurr = scPlayer._playlistIndex;
+          term.echo("\n");
+        }
+      },
+      "resume": function() {
+        var term = this;
+
+        if(scPlayer._playlist == undefined) {
+          term.echo("\n");
+          term.error("You must load a playlist first !");
+          term.echo("\n");
+        } else {
+          scPlayer.play({playlistIndex: scCurr});
+          term.echo("\n");
+          term.error(scPlayer._playlistIndex + "\t\t" + scPlayer._playlist.tracks[scPlayer._playlistIndex].title + " is resumed");
+          term.echo("\n");
+        }
+      },
+      "next": function() {
+        var term = this;
+
+        if(scPlayer._playlist == undefined) {
+          term.echo("\n");
+          term.error("You must load a playlist first !");
+          term.echo("\n");
+        }
+        else {
+          if(scPlayer._playlistIndex == scPlayer._playlist.tracks.length - 1)
+            scPlayer.play({playlistIndex: 0})
+          else
+            scPlayer.next();
+          term.echo("\n");
+          term.error(scPlayer._playlistIndex + "\t\t" + scPlayer._playlist.tracks[scPlayer._playlistIndex].title + " is playing");
+          term.echo("\n");
+        }
+      },
+      "prev": function() {
+        var term = this;
+        if(scPlayer._playlist == undefined) {
+          term.echo("\n");
+          term.error("You must load a playlist first !");
+          term.echo("\n");
+        }
+        else {
+          if(scPlayer._playlistIndex == 0)
+            scPlayer.play({playlistIndex: scPlayer._playlist.tracks.length - 1})
+          else
+            scPlayer.previous();
+          term.echo("\n");
+          term.error(scPlayer._playlistIndex + "\t\t" + scPlayer._playlist.tracks[scPlayer._playlistIndex].title + " is playing");
+          term.echo("\n");
+        }
+      },
+      "help" : function() {
+        this.echo("\n");
+        this.error("login :"); this.echo("login in your account"); this.echo("\n");
+        this.error("load :"); this.echo("load a playlist (see help inside the function)"); this.echo("\n");
+        this.error("currentplaylist :"); this.echo("see the current playlist loaded"); this.echo("\n");
+        this.error("currentsong :"); this.echo("see the current song playing"); this.echo("\n");
+        this.error("play :"); this.echo("play the current song"); this.echo("\n");
+        this.error("pause :"); this.echo("pause the current song"); this.echo("\n");
+        this.error("next :"); this.echo("play the next song inside the playlist"); this.echo("\n");
+        this.error("prev :"); this.echo("play the previous song inside the playlist"); this.echo("\n");
+        this.echo("\n");
+        this.echo("To quit the load function press CTRL+D");
+        this.echo("\n");
+      },
+    },
     "help": function() {
       this.echo("\n");
       this.error("f <shortcut>"); this.echo("open the favorites in a new tab"); this.echo("\n");
@@ -47,26 +351,6 @@ function initTerminal() {
       this.error("sc"); this.echo("goto soundcloud terminal"); this.echo("\n");
       this.error("cff"); this.echo("goto cff terminal"); this.echo("\n");
       this.echo("\n");
-    },
-    "main": function() {
-      showTab("main");
-      mainT.focus(true);
-    },
-    "sc": function() {
-      if ($(".terminal#sc").length == 0) {
-        addTab("sc", "SC");
-        initSoundcloud();
-      }
-      showTab("sc");
-      scT.focus(true);
-    },
-    "cff": function() {
-      if ($(".terminal#cff").length == 0) {
-        addTab("cff", "CFF");
-        initCFF();
-      }
-      showTab("cff");
-      cffT.focus(true);
     }
   }, {
     greetings: 'Welcome ' + username,
@@ -220,26 +504,6 @@ function initSize() {
         mxHeight = $(elem).height();
   });
   $("#favorites-board .favorite").height(mxHeight);
-}
-
-function addTab(tab, name) {
-  $("#tabs").append('<span id="' + tab + '" class="t-tab">' + name + '</span>');
-  $("#terminal-board .terminals").append('<div class="terminal-term '+tab+'"><div id="' + tab + '"></div></div>');
-
-  $(".t-tab").click(function() {
-    showTab($(this).attr('id'));
-  })
-}
-
-function showTab(tab) {
-  $(".terminal-term.active").removeClass("active");
-  $(".terminal-term #" + tab).parent().addClass("active");
-  $("#tabs span.active").removeClass("active");
-  $("#tabs span#" + tab).addClass("active");
-
-  // $(".terminal#" + tab).css({
-  //   height: $("#main-board").height() - 20
-  // });
 }
 
 $(document).ready(function() {

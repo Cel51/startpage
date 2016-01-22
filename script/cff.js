@@ -1,67 +1,67 @@
 function initCFF() {
-  cffT = $('.terminal-term.cff #cff').terminal({
-    "travel": {
-      "connections" :function(fromLocation, toLocation, date, time) {
-
-        var term = this;
-
-        if(date==undefined) date = cffDate();
-        if(time==undefined) time = cffTime();
-
-        $.get("http://transport.opendata.ch/v1/connections?from="+fromLocation+"&to="+toLocation+"&date="+date+"&time="+time,
-        function(data) {
-          createCFFdata(data);
-        });
-      },
-      "help": function() {
-        this.echo("\n");
-        this.error("connections <from> <to>"); this.echo("display the train informations"); this.echo("\n");
-        this.echo("\n");
-      }
-    },
-    "reset": function() {
-      new TimelineMax({onComplete: function() {$(".informations.cff").remove();}})
-      .to($(".informations.cff"), .2 ,{
-        height: 0,
-        autoAlpha: 0
-      })
-      .timeScale(.5)
-    },
-    "help": function() {
-      this.echo("\n");
-      this.error("travel"); this.echo("access the travel"); this.echo("\n");
-      this.error("reset"); this.echo("clean the cff informations"); this.echo("\n");
-      this.error("main"); this.echo("goto main terminal"); this.echo("\n");
-      this.error("sc"); this.echo("goto soundcloud terminal"); this.echo("\n");
-      this.error("cff"); this.echo("goto cff terminal"); this.echo("\n");
-      this.echo("\n");
-    },
-    "main": function() {
-          showTab("main");
-          mainT.focus(true);
-      },
-    "sc": function() {
-          if($(".terminal#sc").length == 0) {
-              addTab("sc", "SC");
-              initSoundcloud();
-          }
-          showTab("sc");
-          scT.focus(true);
-      },
-    "cff": function() {
-          if($(".terminal#cff").length == 0) {
-              addTab("cff", "CFF");
-              initCFF();
-          }
-          showTab("cff");
-          cffT.focus(true);
-      }
-  }, {
-          greetings: 'Welcome to CFF ' + username,
-          name: 'cff',
-          height: 0,
-          prompt: 'CFF > '
-      });
+  // cffT = $('.terminal-term.cff #cff').terminal({
+  //   // "travel": {
+  //   //   "connections" :function(fromLocation, toLocation, date, time) {
+  //   //
+  //   //     var term = this;
+  //   //
+  //   //     if(date==undefined) date = cffDate();
+  //   //     if(time==undefined) time = cffTime();
+  //   //
+  //   //     $.get("http://transport.opendata.ch/v1/connections?from="+fromLocation+"&to="+toLocation+"&date="+date+"&time="+time,
+  //   //     function(data) {
+  //   //       createCFFdata(data);
+  //   //     });
+  //   //   },
+  //   //   "help": function() {
+  //   //     this.echo("\n");
+  //   //     this.error("connections <from> <to>"); this.echo("display the train informations"); this.echo("\n");
+  //   //     this.echo("\n");
+  //   //   }
+  //   // },
+  //   // "reset": function() {
+  //   //   new TimelineMax({onComplete: function() {$(".informations.cff").remove();}})
+  //   //   .to($(".informations.cff"), .2 ,{
+  //   //     height: 0,
+  //   //     autoAlpha: 0
+  //   //   })
+  //   //   .timeScale(.5)
+  //   // },
+  //   // "help": function() {
+  //   //   this.echo("\n");
+  //   //   this.error("travel"); this.echo("access the travel"); this.echo("\n");
+  //   //   this.error("reset"); this.echo("clean the cff informations"); this.echo("\n");
+  //   //   this.error("main"); this.echo("goto main terminal"); this.echo("\n");
+  //   //   this.error("sc"); this.echo("goto soundcloud terminal"); this.echo("\n");
+  //   //   this.error("cff"); this.echo("goto cff terminal"); this.echo("\n");
+  //   //   this.echo("\n");
+  //   // },
+  //   "main": function() {
+  //         showTab("main");
+  //         mainT.focus(true);
+  //     },
+  //   "sc": function() {
+  //         if($(".terminal#sc").length == 0) {
+  //             addTab("sc", "SC");
+  //             initSoundcloud();
+  //         }
+  //         showTab("sc");
+  //         scT.focus(true);
+  //     },
+  //   "cff": function() {
+  //         if($(".terminal#cff").length == 0) {
+  //             addTab("cff", "CFF");
+  //             initCFF();
+  //         }
+  //         showTab("cff");
+  //         cffT.focus(true);
+  //     }
+  // }, {
+  //         greetings: 'Welcome to CFF ' + username,
+  //         name: 'cff',
+  //         height: 0,
+  //         prompt: 'CFF > '
+  //     });
 }
 function createCFFdata(data) {
   var element = "";
