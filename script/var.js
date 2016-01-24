@@ -82,3 +82,7 @@ var favorites = [
     ]
   ]
 ];
+var feeds = [
+  ["20min Hi-Tech","http://www.20min.ch/rss/rss.tmpl?type=channel&get=20&lang=ro"],
+  ["20min Hi-Tech","http://www.20min.ch/rss/rss.tmpl?type=channel&get=20&lang=ro"],
+];

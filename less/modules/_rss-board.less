@@ -1,6 +1,7 @@
 #rss-wrapper {
   height: auto;
   .row();
+
   #rss-board {
     .column(24);
     margin-top: 10px;
@@ -9,6 +10,14 @@
     background: @color-bg;
     border-top: @color-3 1px solid;
     border-bottom: @color-3 1px solid;
+
+    p {
+      padding: 10px 0;
+      text-transform: uppercase;
+      font-size: 1em;
+      letter-spacing: .3em;
+      .setFont-family(Roboto Light);
+    }
 
     .feedEkList {
       li {

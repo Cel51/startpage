@@ -46,12 +46,16 @@ function init() {
 }
 
 function initRss() {
-  $('#rss-board').FeedEk({
-    FeedUrl: 'http://www.20min.ch/rss/rss.tmpl?type=channel&get=20&lang=ro',
-    MaxCount: 1000,
-    DateFormat: 'L',
-    DateFormatLang:'en'
-    });
+  $(feeds).each(function(index, feed) {
+    $('#rss-board').append("<p>"+feed[0]+"</p>");
+    $('#rss-board').append("<div id='"+index+"'></div");
+    $('#rss-board '+"#"+index).FeedEk({
+      FeedUrl: feed[1],
+      MaxCount: 5,
+      DateFormat: 'L',
+      DateFormatLang:'en'
+      });
+  });
 }
 // Terminal initialisation
 function initTerminal() {
@@ -496,6 +500,10 @@ function initTimeLines() {
       autoAlpha: 0,
       marginLeft: "-20"
     }, "#2")
+    .from($("#rss-board"), .2, {
+      autoAlpha: 0,
+      marginLeft: "-20"
+    })
     .timeScale(1.2)
     .pause();
 }
