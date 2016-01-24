@@ -1,3 +1,7 @@
+// All the variable for the app
+// Their name are explicit
+
+var username = "Cel51"
 var clientid = "be212a58528168962a39c64052c1d88e";
 var redirecturi = "http://localhost:8002/callback.html";
 var locations = [

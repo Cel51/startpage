@@ -1,18 +1,27 @@
+// TimeLine variable for the storage of each timeline
 var tlLoading, tlDisplay;
-var username = "Cel51"
-var cffT, mainT, scT;
+// Terminals variable for the focus
+var mainT;
+// Soundcloud variables for a) the music player b) the user (connected) c) the current music played
 var scPlayer = null;
 var scMe = null;
 var scCurr = null;
 
+
+// Init function called at the end of the loading of each components
 function init() {
 
+  // Background managment with the plugin backstretch
+  // Get 1 images from the var.js array of images for the background
   $("body").backstretch("images/"+images[Math.round(Math.random()*(images.length-1))],{fade: 300});
 
+  // Scroll managment for each pannel (smarter screen and after insert of multiple cff informations)
+  // Use the plugin mCustomScrollbar.jquery.min.js
   $(".left-pannel, .mid-pannel, .right-pannel").mCustomScrollbar({
     scrollInertia: 100
   });
 
+  // Call of all the function init of each components and size adapter
   initGreetings();
   initWeather();
   initTimeLines();
@@ -21,18 +30,25 @@ function init() {
   initFavorites();
   initSize();
 
+  // Play the loading animation
   tlLoading.play();
 
+  // If all the images are loaded, pause the animation of the loading and call the display timeline
   $("img").on('load',function() {
     tlLoading.pause();
     tlDisplay.play();
   })
+  // Old code for the display of the loading animation
   // setTimeout(function() {
   //
   // }, 1210);
 }
+
+// Terminal initialisation
 function initTerminal() {
+  // Init the terminal with each function available
   mainT = $('.terminal-term.main #main').terminal({
+    // Favorite function: f <arg> to open in new tab the favorite
     "f": function(arg1) {
       for(var i = 0; i < favorites.length; i++) {
         for(var j = 0; j < favorites[i][1].length; j++) {
@@ -43,8 +59,11 @@ function initTerminal() {
         }
       }
     },
+    // CFF part of the terminal
     "cff": {
-      "travel" :function(fromLocation, toLocation, date, time) {
+      // Get the connections for the passed variable of the CFF terminal
+      // travel <from> <to> <time> <date>
+      "travel" :function(fromLocation, toLocation, time, date) {
 
         var term = this;
 
@@ -56,11 +75,7 @@ function initTerminal() {
           createCFFdata(data);
         });
       },
-      "help": function() {
-        this.echo("\n");
-        this.error("connections <from> <to>"); this.echo("display the train informations"); this.echo("\n");
-        this.echo("\n");
-      },
+      // Reset the CFF informations and empty it
       "reset": function() {
         new TimelineMax({onComplete: function() {$(".informations.cff").remove();}})
         .to($(".informations.cff"), .2 ,{
@@ -69,17 +84,23 @@ function initTerminal() {
         })
         .timeScale(.5);
       },
+      // Display the help for the CFF part
       "help": function() {
         this.echo("\n");
-        this.error("travel"); this.echo("access the travel"); this.echo("\n");
+        this.error("travel <from> <to> <?time> <?date>"); this.echo("display the train informations"); this.echo("\n");
         this.error("reset"); this.echo("clean the cff informations"); this.echo("\n");
         this.error("main"); this.echo("goto main terminal"); this.echo("\n");
         this.error("sc"); this.echo("goto soundcloud terminal"); this.echo("\n");
         this.error("cff"); this.echo("goto cff terminal"); this.echo("\n");
         this.echo("\n");
+        this.echo("to quit the cff function press CTRL+D");
+        this.echo("\n");
       }
     },
+    // SoundCloud Part of the terminal application
     "sc": {
+      // Login into Soundcloud
+      // TODO: add secret (must have PHP server and secret id to add it), it will be in the Auth0 tocken version
       "login" : function() {
         scPlayer = new SoundCloudAudio(clientid);
 
@@ -93,7 +114,9 @@ function initTerminal() {
           });
         });
       },
+      // Enter the load function of the SoundCloud app
       "load" : {
+        // Load current logged user favorites tracks into the playlist
         "likes": function() {
           var term = this;
 
@@ -112,6 +135,7 @@ function initTerminal() {
           term.error("Call currentplaylist to see the loaded plalist");
           term.echo("\n");
         },
+        // Load current logged user tracks into the playlist
         "tracks": function() {
           var term = this;
 
@@ -130,6 +154,7 @@ function initTerminal() {
           term.error("Call currentplaylist to see the loaded plalist");
           term.echo("\n");
         },
+        // Load current logged user playlist (must pass a name) into the played playlist
         "playlist": function(playlist) {
           var term = this;
           scPlayer.resolve('https://soundcloud.com/'+scMe.permalink+'/sets/'+playlist, function (playlist, err) {
@@ -147,6 +172,8 @@ function initTerminal() {
           term.error("Call currentplaylist to see the loaded plalist");
           term.echo("\n");
         },
+        // This function is a bit complicated
+        // must pass a user, mod(playlist, tracks or likes) and a name (if playlist) and it load the passed arguments in the played playlist
         "user": function(username, mod, playlist) {
           var term = this;
 
@@ -189,6 +216,7 @@ function initTerminal() {
           term.error("Call currentplaylist to see the loaded plalist");
           term.echo("\n");
         },
+        // Display the help for the load sections
         "help" : function() {
           this.echo("\n");
           this.error("likes"); this.echo("load your account favorites"); this.echo("\n");
@@ -198,14 +226,11 @@ function initTerminal() {
           this.error("user <username> likes"); this.echo("load the user's favorites"); this.echo("\n");
           this.error("user <username> playlist <name of the playlist>"); this.echo("load one of the user's playlist");this.echo("\n");
           this.echo("\n");
-          this.error("main"); this.echo("goto main terminal"); this.echo("\n");
-          this.error("sc"); this.echo("goto soundcloud terminal"); this.echo("\n");
-          this.error("cff"); this.echo("goto cff terminal"); this.echo("\n");
-          this.echo("\n");
           this.echo("to quit the load function press CTRL+D");
           this.echo("\n");
         }
       },
+      // Show the current loaded playlist
       "currentplaylist": function() {
         var term = this;
 
@@ -225,6 +250,7 @@ function initTerminal() {
           term.echo("\n");
         }
       },
+      // Show the current played song
       "currentsong": function() {
         var term = this;
 
@@ -239,6 +265,7 @@ function initTerminal() {
           term.echo("\n");
         }
       },
+      // Play the song (arg) from the playlist
       "play" : function(arg) {
         var term = this;
 
@@ -264,6 +291,7 @@ function initTerminal() {
           term.echo("\n");
         }
       },
+      // Pause the current song played
       "pause" : function() {
         var term = this;
 
@@ -280,6 +308,7 @@ function initTerminal() {
           term.echo("\n");
         }
       },
+      // Resume the current played song
       "resume": function() {
         var term = this;
 
@@ -294,6 +323,7 @@ function initTerminal() {
           term.echo("\n");
         }
       },
+      // Play the next song in the playlist
       "next": function() {
         var term = this;
 
@@ -312,6 +342,7 @@ function initTerminal() {
           term.echo("\n");
         }
       },
+      // Play the previous song in the playlist
       "prev": function() {
         var term = this;
         if(scPlayer._playlist == undefined) {
@@ -329,21 +360,23 @@ function initTerminal() {
           term.echo("\n");
         }
       },
+      // Show the help for the soundcloud part
       "help" : function() {
         this.echo("\n");
-        this.error("login :"); this.echo("login in your account"); this.echo("\n");
-        this.error("load :"); this.echo("load a playlist (see help inside the function)"); this.echo("\n");
-        this.error("currentplaylist :"); this.echo("see the current playlist loaded"); this.echo("\n");
-        this.error("currentsong :"); this.echo("see the current song playing"); this.echo("\n");
-        this.error("play :"); this.echo("play the current song"); this.echo("\n");
-        this.error("pause :"); this.echo("pause the current song"); this.echo("\n");
-        this.error("next :"); this.echo("play the next song inside the playlist"); this.echo("\n");
-        this.error("prev :"); this.echo("play the previous song inside the playlist"); this.echo("\n");
+        this.error("login"); this.echo("login in your account"); this.echo("\n");
+        this.error("load"); this.echo("load a playlist (see help inside the function)"); this.echo("\n");
+        this.error("currentplaylist"); this.echo("see the current playlist loaded"); this.echo("\n");
+        this.error("currentsong"); this.echo("see the current song playing"); this.echo("\n");
+        this.error("play"); this.echo("play the current song"); this.echo("\n");
+        this.error("pause"); this.echo("pause the current song"); this.echo("\n");
+        this.error("next"); this.echo("play the next song inside the playlist"); this.echo("\n");
+        this.error("prev"); this.echo("play the previous song inside the playlist"); this.echo("\n");
         this.echo("\n");
-        this.echo("To quit the load function press CTRL+D");
+        this.echo("To quit the sc function press CTRL+D");
         this.echo("\n");
       },
     },
+    // Help for the terminal
     "help": function() {
       this.echo("\n");
       this.error("f <shortcut>"); this.echo("open the favorites in a new tab"); this.echo("\n");
@@ -361,12 +394,14 @@ function initTerminal() {
   mainT.focus();
 }
 
+// Set the username and call the clock function for the greetings
 function initGreetings() {
   $(".greetings-helloworld .greetings-name").html(username);
 
   initClock();
 }
 
+// Init the weather part and add the weather options
 function initWeather() {
   locations.forEach(function(i, e) {
     $.simpleWeather({
@@ -395,6 +430,7 @@ function initWeather() {
   });
 }
 
+// Animations initialization
 function initTimeLines() {
   tlLoading = new TimelineMax({
       repeat: -1
@@ -455,6 +491,7 @@ function initTimeLines() {
     .pause();
 }
 
+// Clock display
 function initClock() {
   var today = new Date();
   var h = today.getHours();
@@ -493,6 +530,7 @@ function initClock() {
   var t = setTimeout(initClock, 500);
 }
 
+// Size update of the app
 function initSize() {
 
   $(".mid-pannel, .left-pannel, .right-pannel").height(document.body.clientHeight-20);
@@ -506,15 +544,15 @@ function initSize() {
   $("#favorites-board .favorite").height(mxHeight);
 }
 
+// On ready magueule
 $(document).ready(function() {
-
   init();
-
   setTimeout(function() {
     initSize();
   }, 2500)
 });
 
+// For each resize
 $(window).resize(function() {
   initSize();
 })
