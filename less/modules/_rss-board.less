@@ -1,0 +1,33 @@
+#rss-wrapper {
+  height: auto;
+  .row();
+  #rss-board {
+    .column(24);
+    margin-top: 10px;
+    color: @color-1;
+    padding: 10px;
+    background: @color-bg;
+    border-top: @color-3 1px solid;
+    border-bottom: @color-3 1px solid;
+
+    .feedEkList {
+      li {
+        padding: 10px 0;
+        display: inline-block;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .itemTitle {
+        a{text-decoration: none; color: @color-1;}
+      }
+      .itemDate {
+        display: none;
+      }
+      .itemContent {
+        display: none;
+      }
+    }
+  }
+}

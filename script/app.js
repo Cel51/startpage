@@ -28,6 +28,7 @@ function init() {
   initTerminal();
   initSearch();
   initFavorites();
+  initRss();
   initSize();
 
   // Play the loading animation
@@ -44,6 +45,14 @@ function init() {
   // }, 1210);
 }
 
+function initRss() {
+  $('#rss-board').FeedEk({
+    FeedUrl: 'http://www.20min.ch/rss/rss.tmpl?type=channel&get=20&lang=ro',
+    MaxCount: 1000,
+    DateFormat: 'L',
+    DateFormatLang:'en'
+    });
+}
 // Terminal initialisation
 function initTerminal() {
   // Init the terminal with each function available
