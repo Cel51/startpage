@@ -18,7 +18,7 @@ function init() {
   // Scroll managment for each pannel (smarter screen and after insert of multiple cff informations)
   // Use the plugin mCustomScrollbar.jquery.min.js
   $(".left-pannel, .mid-pannel, .right-pannel").mCustomScrollbar({
-    scrollInertia: 100
+    scrollInertia: 300
   });
 
   // Call of all the function init of each components and size adapter

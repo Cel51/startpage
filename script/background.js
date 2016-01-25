@@ -124,8 +124,8 @@
                 //     points[i].active = 0.1;
                 //     points[i].circle.active = 0.1;
                 // } else {
-                    points[i].active = 0.02;
-                    points[i].circle.active = 0.02;
+                    points[i].active = 0.04;
+                    points[i].circle.active = 0.04;
                 //}
 
                 drawLines(points[i]);
