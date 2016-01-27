@@ -1,15 +1,43 @@
 # Startpage
-Website for cpnv.AWA
 
-This is a project for school. It has multiple goals.
+## The History/Reasons of the project
 
-* Making animation
-* Using APIs
+This is a small project over 2 weeks created for 2 modules for my school:
+* PRW3 (The API parts of the project)
+* AWA1 (The animation and design of the project)
+ 
+I had another startpage previously, downloaded from /wg/ and slightly modified but it had some bugs. So one year after I had the idea to create a new one that fits me.
 
-Currently, there's 2 API available
+My Old Homepage
+![Old Homepage](http://i.imgur.com/OYN1EzQ.png "My old homepage")
 
-* CFF (transport.opendata.ch) for the CFF (train network in switzerland)
-* SoundCloud API 
+My New Homepage
+![New Homepage](http://i.imgur.com/VJqQdbA.png "My new homepage")
 
-I hope it will work in standalone but I haven't tested yet.
+You can see the difference there, I think.
 
+## The features in the new Homepage
+
+### Left pannel
+
+![Left Pannel](http://i.imgur.com/6o01LXB.png "Left pannel")
+
+The left pannel show greetings and your current time and weather (editable)
+
+### Mid pannel
+
+![Mid Pannel](http://i.imgur.com/A5ieCPV.png "Mid pannel")
+
+The middle pannel show the search bar (customizable) and your favorites and also the CFF schedule called with the terminal
+
+## Right pannel
+
+![Right Pannel](http://i.imgur.com/wrOn2kA.png "Right pannel")
+
+The right pannel is where the terminal is and also the RSS flux pannel
+
+# Customization
+
+You can simply edit the parameters of the app inside the var.js file
+
+![Edit parameters](http://i.imgur.com/aO40n05.png "Your config goes here")
