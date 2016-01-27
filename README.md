@@ -41,3 +41,14 @@ The right pannel is where the terminal is and also the RSS flux pannel
 You can simply edit the parameters of the app inside the var.js file
 
 ![Edit parameters](http://i.imgur.com/aO40n05.png "Your config goes here")
+
+# Soundcloud 
+
+It's really simple to use it. There's a help inside the terminal.
+
+[Get your custom app identification](soundcloud.com/you/apps/)
+
+This version requires you to login each time you want to use Soundcloud, it's because there's no need of a PHP server.
+
+# Next version
+I don't have any more ideas or maybe 1 or 2 like Riot Games api for games but I will see if I have the time to do it. So you can send me your recommendations inside the issues part of the project.
