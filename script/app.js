@@ -477,6 +477,9 @@ function initTimeLines() {
       autoAlpha: 0,
       marginLeft: "-20"
     })
+    .to($(".image"), 0, {
+      height: "auto"
+    })
     .from($("#greetings-board"), .2, {
       autoAlpha: 0,
       marginLeft: "-20"
