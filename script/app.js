@@ -49,7 +49,7 @@ function initRss() {
   $(feeds).each(function(index, feed) {
     $('#rss-board').append("<p>"+feed[0]+"</p>");
     $('#rss-board').append("<div id='"+index+"'></div");
-    $('#rss-board '+"#"+index).FeedEk({
+    $('#rss-board #'+index).FeedEk({
       FeedUrl: feed[1],
       MaxCount: 5,
       DateFormat: 'L',
@@ -57,6 +57,7 @@ function initRss() {
       });
   });
 }
+
 // Terminal initialisation
 function initTerminal() {
   // Init the terminal with each function available

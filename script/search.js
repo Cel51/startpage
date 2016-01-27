@@ -12,13 +12,18 @@ function remplaceChar(str, character, replacement){
     return str;
 }
 function searchInternet(arg) {
-  for(var i = 0; i < searchs.length; i++) {
-    if(searchs[i][0] == arg.substr(0, 2)) {
-      arg = arg.substr(3);
-      arg = remplaceChar(arg,' ','+');
-      var win = window.open(searchs[i][1]+arg, '_blank');
-      win.focus();
+  if(arg.substr(0,1) == "!") {
+    for(var i = 0; i < searchs.length; i++) {
+      if(searchs[i][0] == arg.substr(0, 2)) {
+        arg = arg.substr(3);
+        arg = remplaceChar(arg,' ','+');
+        var win = window.open(searchs[i][1]+arg, '_blank');
+        win.focus();
+      }
     }
+  } else {
+    var win = window.open(searchs[0][1]+arg, '_blank');
+    win.focus();
   }
 }
 function initSearch() {
