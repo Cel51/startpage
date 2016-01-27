@@ -46,7 +46,7 @@ You can simply edit the parameters of the app inside the var.js file
 
 It's really simple to use it. There's a help inside the terminal.
 
-[Get your custom app identification](soundcloud.com/you/apps/)
+[Get your custom app identification](http://soundcloud.com/you/apps/)
 
 This version requires you to login each time you want to use Soundcloud, it's because there's no need of a PHP server.
 
