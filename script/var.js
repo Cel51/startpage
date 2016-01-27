@@ -2,8 +2,8 @@
 // Their name are explicit
 
 var username = "Cel51"
-var clientid = "be212a58528168962a39c64052c1d88e";
-var redirecturi = "http://localhost:8002/callback.html";
+var clientid = "72a6d2e8b9c37b23283b8b5d6a390cc3";
+var redirecturi = "http://cel51.github.io/startpage/callback.html";
 var locations = [
   "784201",
   "784302"
