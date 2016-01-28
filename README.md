@@ -50,5 +50,31 @@ It's really simple to use it. There's a help inside the terminal.
 
 This version requires you to login each time you want to use Soundcloud, it's because there's no need of a PHP server.
 
+# How to use it ?
+
+## The left pannel
+
+The left pannel is pretty much self explained, there's no ambiguous way to use it because there's no way to actually use it.
+
+## The mid pannel
+
+### The search bar
+
+Simply add "!<the letter>" to search something, if you don't put "!" you will search on the first searchengine.
+
+### The bookmarks 
+
+Just click on the link or the shortcut
+
+## The right pannel
+
+### Terminal
+
+There's many command on the terminal, but you will use the "f <shortcut>" to open the bookmark wanted. Everything else is in the help of each fonction.
+
+### RSS board
+
+Simply click on the link to open the article
+
 # Next version
 I don't have any more ideas or maybe 1 or 2 like Riot Games api for games but I will see if I have the time to do it. So you can send me your recommendations inside the issues part of the project.
