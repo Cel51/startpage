@@ -1,10 +1,11 @@
+// Display the CFF informations into the page
 function createCFFdata(data) {
   var element = "";
   element += ''+
   '<div class="informations cff">'+
     '<div class="travels">'+
       '<p class="title">CFF informations</p>';
-
+      // Single element
       // $(data.connections).each(function(index, object) {
         element += ''+
         '<div class="travel">'+
@@ -54,6 +55,7 @@ function createCFFdata(data) {
     '</div>'+
   '</div>';
 
+  // Animation of the display of the CFF section
   $("#informations-board").prepend(element);
   element = $(".informations.cff").first();
   console.log(element);
@@ -64,6 +66,7 @@ function createCFFdata(data) {
   })
   .timeScale(0.5)
 }
+// Convert the hour
 function convertDate(date) {
   var ddate = new Date(date);
   var h = ddate.getHours();
