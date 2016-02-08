@@ -1,3 +1,4 @@
+// Display the favorites
 function initFavorites() {
   var element = "";
   $(favorites).each(function(index, group) {

@@ -18,7 +18,7 @@ function init() {
   // Scroll managment for each pannel (smarter screen and after insert of multiple cff informations)
   // Use the plugin mCustomScrollbar.jquery.min.js
   $(".left-pannel, .mid-pannel, .right-pannel").mCustomScrollbar({
-    scrollInertia: 100
+    scrollInertia: 300
   });
 
   // Call of all the function init of each components and size adapter
@@ -49,7 +49,7 @@ function initRss() {
   $(feeds).each(function(index, feed) {
     $('#rss-board').append("<p>"+feed[0]+"</p>");
     $('#rss-board').append("<div id='"+index+"'></div");
-    $('#rss-board '+"#"+index).FeedEk({
+    $('#rss-board #'+index).FeedEk({
       FeedUrl: feed[1],
       MaxCount: 5,
       DateFormat: 'L',
@@ -57,6 +57,7 @@ function initRss() {
       });
   });
 }
+
 // Terminal initialisation
 function initTerminal() {
   // Init the terminal with each function available
@@ -475,6 +476,9 @@ function initTimeLines() {
     .from($(".image"), .2, {
       autoAlpha: 0,
       marginLeft: "-20"
+    })
+    .to($(".image"), 0, {
+      height: "auto"
     })
     .from($("#greetings-board"), .2, {
       autoAlpha: 0,

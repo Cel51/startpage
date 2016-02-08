@@ -1,3 +1,4 @@
+// Background canvas animation
 (function() {
 
     var width, height, largeHeader, canvas, ctx, points, target, animateHeader = true;
@@ -124,8 +125,8 @@
                 //     points[i].active = 0.1;
                 //     points[i].circle.active = 0.1;
                 // } else {
-                    points[i].active = 0.02;
-                    points[i].circle.active = 0.02;
+                    points[i].active = 0.04;
+                    points[i].circle.active = 0.04;
                 //}
 
                 drawLines(points[i]);
