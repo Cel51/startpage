@@ -1,4 +1,4 @@
-# Startpage
+# Startpage [![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
 ## The History/Reasons of the project
 
